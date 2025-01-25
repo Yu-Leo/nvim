@@ -251,8 +251,8 @@ require("diffview").setup {
 
       { "n", "h", actions.toggle_fold, { desc = "Toggle fold" } },
 
-      { "n", "<c-b>", actions.scroll_view(-0.25), { desc = "Scroll the view up" } },
-      { "n", "<c-f>", actions.scroll_view(0.25), { desc = "Scroll the view down" } },
+      { "n", "<m-k>", actions.scroll_view(-0.1), { desc = "Scroll the view up" } },
+      { "n", "<m-j>", actions.scroll_view(0.1), { desc = "Scroll the view down" } },
       { "n", "<tab>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
       {
         "n",

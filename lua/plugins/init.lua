@@ -133,7 +133,7 @@ return {
       },
     },
     config = function()
-      require "configs.cmp"
+      require "configs.nvim-cmp"
     end,
   },
   {
@@ -152,7 +152,7 @@ return {
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     config = function()
-      require "configs.treesitter"
+      require "configs.nvim-treesitter"
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -175,7 +175,6 @@ return {
         version = "^1.0.0",
       },
       "mollerhoj/telescope-recent-files.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-hop.nvim",
       {
         "isak102/telescope-git-file-history.nvim",
@@ -187,7 +186,7 @@ return {
     },
     cmd = "Telescope",
     config = function()
-      require "configs.telescope"
+      require "configs.nvim-telescope"
     end,
   },
   {
@@ -218,11 +217,7 @@ return {
   {
     "kevinhwang91/nvim-bqf",
     event = { "BufEnter" },
-    opts = {
-      preview = {
-        border = "single",
-      },
-    },
+    opts = require "configs.nvim-bqf",
   },
   {
     "folke/snacks.nvim",
@@ -251,13 +246,8 @@ return {
     end,
   },
   {
-    "chentoast/marks.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
     "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
     config = function()
       require "configs.diffview"
     end,
@@ -277,11 +267,6 @@ return {
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
-  },
-  {
-    "danymat/neogen",
-    config = true,
-    cmd = "Neogen",
   },
   {
     "mfussenegger/nvim-lint",
@@ -325,7 +310,15 @@ return {
   },
   {
     "Yu-Leo/blame-column.nvim",
-    dir = "~/Code/neovim/blame-column.nvim/",
     opts = {},
+  },
+  {
+    "oysandvik94/curl.nvim",
+    cmd = { "CurlOpen" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {},
+    ft = { "curl" },
   },
 }

@@ -132,21 +132,6 @@ telescope.setup {
       no_ignore = true,
       no_ignore_parent = true,
     },
-    file_browser = {
-      auto_depth = true,
-      hidden = true,
-      no_ignore = true,
-      no_ignore_parent = true,
-      prompt_path = true,
-      grouped = true,
-      mappings = {
-        ["i"] = {
-          ["<bs>"] = function(_, _) -- Override fb_actions.backspace: do not move to parent dir if prompt == ""
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<bs>", true, false, true), "tn", false)
-          end,
-        },
-      },
-    },
     hop = {
       sign_hl = "MoreMsg",
     },
@@ -155,6 +140,5 @@ telescope.setup {
 
 telescope.load_extension "recent-files"
 telescope.load_extension "live_grep_args"
-telescope.load_extension "file_browser"
 telescope.load_extension "hop"
 telescope.load_extension "git_file_history"

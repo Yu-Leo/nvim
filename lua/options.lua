@@ -73,6 +73,13 @@ o.statusline = "%!v:lua.require('Yu-Leo.statusline').generate()"
 vim.filetype.add {
   extension = {
     brief = "brief",
+    curl = "curl",
+  },
+}
+
+vim.filetype.add {
+  pattern = {
+    [".*%.env.*"] = "sh",
   },
 }
 

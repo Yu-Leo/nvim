@@ -34,8 +34,15 @@ local gitbrowse_url_patterns = {
 }
 
 if private_exists then
-  table.insert(gitbrowse_remote_patterns, 1, private.get_avito_remote_battern())
-  gitbrowse_url_patterns = vim.tbl_deep_extend("force", gitbrowse_url_patterns, private.get_avito_url_pattern())
+  local private_remote_patterns = private.get_private_remote_pattern()
+  if private_remote_patterns ~= nil then
+    table.insert(gitbrowse_remote_patterns, 1, private_remote_patterns)
+  end
+
+  local private_url_patterns = private.get_private_url_patterns()
+  if private_url_patterns ~= nil then
+    gitbrowse_url_patterns = vim.tbl_deep_extend("force", gitbrowse_url_patterns, private_url_patterns)
+  end
 end
 
 return {

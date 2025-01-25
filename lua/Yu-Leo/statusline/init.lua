@@ -76,7 +76,15 @@ local get_content_block_name = function(state)
     return " " .. "♜" .. " " .. "GitBlame" .. " "
   end
 
-  if type == "FILE_IN_CWD" or type == "FILE_NOT_IN_CWD" or type == "FUGITIVE" then
+  if type == "DIFFVIEWFILEPANEL" then
+    return " " .. icon .. " " .. "Diffview" .. " "
+  end
+
+  if type == "CURLOUTPUT" then
+    return " " .. icon .. " " .. "CurlOutput" .. " "
+  end
+
+  if type == "FILE_IN_CWD" or type == "FILE_NOT_IN_CWD" or type == "FUGITIVE" or type == "DIFFVIEWFILE" then
     local devicons_present, devicons = pcall(require, "nvim-web-devicons")
     if devicons_present then
       local ft_icon = devicons.get_icon(state.name)
@@ -112,7 +120,14 @@ local render_block_git_head = function(state)
     return "%#StGitHead#" .. content .. "%#StBase#", vim.fn.strdisplaywidth(content)
   end
 
-  if type == "NEOTEST" or type == "NVIMTREE" or type == "EMPTY" or type == "BLAME" then
+  if
+    type == "NEOTEST"
+    or type == "NVIMTREE"
+    or type == "EMPTY"
+    or type == "BLAME"
+    or type == "DIFFVIEWFILEPANEL"
+    or type == "CURLOUTPUT"
+  then
     local head = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
     if head:match "fatal" then
       return "", 0
@@ -131,12 +146,40 @@ local render_block_git_head = function(state)
     return "", 0
   end
 
+  if type == "DIFFVIEWFILE" then -- TODO: refactor
+    local hash, _ = string.match(state.path, ".git/([0-9a-f]+)(/.*)")
+
+    if not hash then
+      hash, _ = string.match(state.path, ".git/(:0:)(/.*)")
+      if hash then
+        hash = "head"
+      end
+    end
+
+    if hash then
+      local head = hash:sub(1, 7)
+      local content = "  " .. head .. " "
+      return "%#StGitHead#" .. content .. "%#StBase#", vim.fn.strdisplaywidth(content)
+    end
+
+    return "", 0
+  end
+
   return "", 0
 end
 
 local render_block_path_full = function(state)
   local type = state.type
-  if type == "EMPTY" or type == "NVIMTREE" or type == "NEOTEST" or type == "TERMINAL" or type == "BLAME" then
+
+  if
+    type == "EMPTY"
+    or type == "NVIMTREE"
+    or type == "NEOTEST"
+    or type == "TERMINAL"
+    or type == "BLAME"
+    or type == "DIFFVIEWFILEPANEL"
+    or type == "CURLOUTPUT"
+  then
     local content = "  " .. state.cwd:match "([^/\\]+)[/\\]*$" .. "/ "
     return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
   end
@@ -152,11 +195,26 @@ local render_block_path_full = function(state)
   end
 
   if type == "FUGITIVE" then
-    local _, path = string.match(state.path, ".git//([0-9a-f]+)(/.*)")
+    local _, path = string.match(state.path, ".git//([0-9a-f]+)(/.*)") -- TODO: move to func
     if path then
       local content = "  " .. state.cwd:match "([^/\\]+)[/\\]*$" .. path .. " "
       return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
     end
+    return "", 0
+  end
+
+  if type == "DIFFVIEWFILE" then
+    local _, path = string.match(state.path, ".git/([0-9a-f]+)(/.*)") -- TODO: move to func
+
+    if not path then
+      _, path = string.match(state.path, ".git/(:0:)(/.*)")
+    end
+
+    if path then
+      local content = "  " .. state.cwd:match "([^/\\]+)[/\\]*$" .. path .. " "
+      return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
+    end
+
     return "", 0
   end
 
@@ -165,7 +223,16 @@ end
 
 local render_block_path_middle = function(state)
   local type = state.type
-  if type == "EMPTY" or type == "NVIMTREE" or type == "NEOTEST" or type == "TERMINAL" or type == "BLAME" then
+
+  if
+    type == "EMPTY"
+    or type == "NVIMTREE"
+    or type == "NEOTEST"
+    or type == "TERMINAL"
+    or type == "BLAME"
+    or type == "DIFFVIEWFILEPANEL"
+    or type == "CURLOUTPUT"
+  then
     return "", 0
   end
 
@@ -175,12 +242,16 @@ local render_block_path_middle = function(state)
   end
 
   if type == "FUGITIVE" then
-    local _, path = string.match(state.path, ".git//([0-9a-f]+)(/.*)")
+    local _, path = string.match(state.path, ".git//([0-9a-f]+)(/.*)") -- TODO: move to func
     if path then
       local content = "  " .. path .. " "
       return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
     end
     return "", 0
+  end
+
+  if type == "DIFFVIEWFILE" then
+    return "", 0 -- TODO
   end
 
   if type == "FILE_NOT_IN_CWD" then
@@ -296,37 +367,13 @@ local render_type_file = function(state)
   return render_blocks(order, state.blocks)
 end
 
-local render_type_empty = function(state)
+local render_default = function(state)
   local order = { "mode", "name", "git_head", "path", "%=", "cursor" }
 
   return render_blocks(order, state.blocks)
 end
 
-local render_type_nvim_tree = function(state)
-  local order = { "mode", "name", "git_head", "path", "%=", "cursor" }
-
-  return render_blocks(order, state.blocks)
-end
-
-local render_type_blame = function(state)
-  local order = { "mode", "name", "git_head", "path", "%=", "cursor" }
-
-  return render_blocks(order, state.blocks)
-end
-
-local render_type_neotest = function(state)
-  local order = { "mode", "name", "git_head", "path", "%=", "cursor" }
-
-  return render_blocks(order, state.blocks)
-end
-
-local render_type_terminal = function(state)
-  local order = { "mode", "name", "git_head", "path", "%=", "cursor" }
-
-  return render_blocks(order, state.blocks)
-end
-
-local render_type_fugitive = function(state)
+local render_default_with_gd = function(state)
   local order = { "mode", "name", "git_head", "path", "%=", "cursor" }
 
   if utils.calculate_len(order, state.lens) > M.state.workspace_width then
@@ -350,18 +397,18 @@ local render = function(state)
     return render_type_file(state)
   elseif type == "FILE_NOT_IN_CWD" then
     return render_type_file(state)
-  elseif type == "EMPTY" then
-    return render_type_empty(state)
-  elseif type == "NVIMTREE" then
-    return render_type_nvim_tree(state)
-  elseif type == "BLAME" then
-    return render_type_blame(state)
-  elseif type == "NEOTEST" then
-    return render_type_neotest(state)
-  elseif type == "TERMINAL" then
-    return render_type_terminal(state)
-  elseif type == "FUGITIVE" then
-    return render_type_fugitive(state)
+  elseif
+    type == "EMPTY"
+    or type == "NVIMTREE"
+    or type == "BLAME"
+    or type == "NEOTEST"
+    or type == "TERMINAL"
+    or type == "DIFFVIEWFILEPANEL"
+    or type == "CURLOUTPUT"
+  then
+    return render_default(state)
+  elseif type == "FUGITIVE" or type == "DIFFVIEWFILE" then
+    return render_default_with_gd(state)
   else
     return ""
   end

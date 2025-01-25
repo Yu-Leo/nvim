@@ -61,3 +61,10 @@ autocmd({ "LspAttach" }, {
     require("Yu-Leo.common").check_custom_linters()
   end,
 })
+
+-- For refresh nvim-tree after switching form the diffview tab
+autocmd({ "TabEnter" }, {
+  callback = function(_)
+    require("nvim-tree.api").tree.reload()
+  end,
+})

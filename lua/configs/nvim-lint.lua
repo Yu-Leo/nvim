@@ -12,6 +12,4 @@ lint.linters.golangcilint.args = {
   "--show-stats=false",
   "--print-issued-lines=false",
   "--print-linter-name=false",
-  -- "-c",
-  -- "./.golangci-lint.yaml",
 }

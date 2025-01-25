@@ -21,12 +21,24 @@ M.get_type_by_state = function(state)
     return "NEOTEST"
   end
 
+  if string_starts(state.name, "Curl output_") then
+    return "CURLOUTPUT"
+  end
+
+  if state.name == "DiffviewFilePanel" then
+    return "DIFFVIEWFILEPANEL"
+  end
+
   if string_starts(state.path, "term:") then
     return "TERMINAL"
   end
 
   if string_starts(state.path, "fugitive:") then
     return "FUGITIVE"
+  end
+
+  if string_starts(state.path, "diffview:") then
+    return "DIFFVIEWFILE"
   end
 
   if string_starts(state.path, state.cwd) then

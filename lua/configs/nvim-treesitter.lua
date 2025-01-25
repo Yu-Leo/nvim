@@ -13,7 +13,6 @@ local ensure_installed = {
   "gowork",
   "toml",
   "yaml",
-  "hjson",
   "markdown",
   "gitignore",
   "python",
@@ -27,7 +26,8 @@ local ensure_installed = {
   "cmake",
   "cpp",
   "sql",
-  "json",
+  "json5",
+  "bash",
 }
 
 if brief_exists then
@@ -95,6 +95,24 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
+require("treesitter-context").setup {
+  enable = true,
+  multiwindow = false,
+  max_lines = 0,
+  min_window_height = 0,
+  line_numbers = true,
+  multiline_threshold = 20,
+  trim_scope = "outer",
+  mode = "cursor",
+  separator = nil,
+  zindex = 20,
+  on_attach = nil,
+}
+
 if brief_exists then
   brief.setup_nvim_treesitter()
 end
+
+vim.treesitter.language.register("bash", "zsh")
+
+vim.treesitter.language.register("json5", "json")

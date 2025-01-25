@@ -220,6 +220,7 @@ M.polish_hl = {
     ["@error"] = { fg = M.base_16.base05 },
 
     ["@keyword"] = { fg = M.base_16.base09 },
+    ["@keyword.json5"] = { fg = M.base_16.base05 },
     ["@keyword.function"] = { fg = M.base_16.base09 },
     ["@keyword.exception"] = { fg = M.base_16.base09 },
     ["@keyword.return"] = { fg = M.base_16.base09 },
@@ -233,9 +234,11 @@ M.polish_hl = {
 
     ["@keyword.import"] = { fg = M.base_16.base09 },
     ["@keyword.import.go"] = { fg = M.base_16.base09 },
+    ["@keyword.import.python"] = { fg = M.base_16.base09 },
     ["@keyword.import.tsx"] = { fg = M.base_16.base09 },
     ["@keyword.import.typescript"] = { fg = M.base_16.base09 },
     ["@keyword.import.javascript"] = { fg = M.base_16.base09 },
+    ["@keyword.import.make"] = { fg = M.base_16.base09 },
 
     ["@function"] = { fg = M.base_16.base0D },
     ["@function.builtin"] = { fg = M.base_16.base0D },

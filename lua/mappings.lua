@@ -8,7 +8,6 @@ map("n", "<C-a>", "ggVG")
 map("n", ";", ":", { desc = "Cmd enter command mode" })
 
 map("n", "<leader>w", "<Cmd>w<CR>", { desc = "Save" })
-map("n", "<leader>W", "<Cmd>wq<CR>", { desc = "Save and exit" })
 map("n", "<leader>q", "<cmd>confirm q<CR>", { desc = "Window quit" })
 map("n", "<C-q>", "<cmd>confirm qall<CR>", { desc = "General quit neovim" })
 
@@ -20,6 +19,13 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 
 map("n", "n", "nzz", { desc = "Go to next search result" })
 map("n", "N", "Nzz", { desc = "Go to prev search result" })
+
+-- Better up/down
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+
 -- Base !>
 
 -- <! Movements in insert mode
@@ -192,10 +198,6 @@ end, { desc = "Telescope find files" })
 
 map("n", "<leader>fh", "<cmd>TodoTelescope<CR>", { desc = "Find todos" })
 
-map("n", "<leader>fj", function()
-  require("telescope").extensions.file_browser.file_browser()
-end, { desc = "File browser" })
-
 map("n", "<leader>fm", function()
   require("telescope").extensions.git_file_history.git_file_history()
 end, { desc = "File browser" })
@@ -219,25 +221,25 @@ map({ "n", "t" }, "<M-h>", "<cmd>ToggleTerm<CR>", { desc = "Toggle horizontal te
 map("n", "<leader>ga", "<cmd>Git add --all<CR>", { desc = "Git add to index all" })
 map("n", "<leader>gst", "<cmd>Git status<CR>", { desc = "Git status" })
 
-map("n", "<leader>gC", "<cmd>Git commit --amend<CR>", { desc = "Git commit --amend" })
+map("n", "<leader>gy", "<cmd>Git commit --amend<CR>", { desc = "Git commit --amend" })
 
 map("n", "<leader>gm", function()
   require("Yu-Leo.git").git_commit()
 end, { desc = "Git commit" })
 
 map("n", "<leader>gj", function()
-  require("Yu-Leo.git").git_commit_brname()
-end, { desc = "Git commit with git branch name prefix" })
+  require("Yu-Leo.git").git_commit "task"
+end, { desc = "Git commit with git task name prefix" })
 
 map("n", "<leader>gM", function()
   require("Yu-Leo.git").git_stage_and_commit()
 end, { desc = "Git stage all & commit" })
 
 map("n", "<leader>gJ", function()
-  require("Yu-Leo.git").git_stage_and_commit_brname()
-end, { desc = "Git stage all & commit with git branch name prefix" })
+  require("Yu-Leo.git").git_stage_and_commit "task"
+end, { desc = "Git stage all & commit with git task name prefix" })
 
-map("n", "<leader>gP", "<cmd>Git push<CR>", { desc = "Git push" })
+map("n", "<leader>gi", "<cmd>Git push<CR>", { desc = "Git push" })
 
 map("n", "<leader>gps", function()
   require("Yu-Leo.git").git_push_set_upstream()
@@ -247,8 +249,9 @@ map("n", "<leader>gpf", "<cmd>Git push --force<CR>", { desc = "Git push --force"
 
 map("n", "<leader>gpr", "<cmd>Git pull --rebase<CR>", { desc = "Git pull with rebase" })
 
-map("n", "<leader>gra", "<cmd>Git restore .<CR>", { desc = "Git restore ." })
-map("n", "<leader>grf", "<cmd>Git reset --hard HEAD<CR>", { desc = "Git reset --hard HEAD" })
+map("n", "<leader>gka", "<cmd>Git restore .<CR>", { desc = "Git restore ." })
+map("n", "<leader>gkd", "<cmd>Git restore %<CR>", { desc = "Git restore file" })
+map("n", "<leader>gkf", "<cmd>Git reset --hard HEAD<CR>", { desc = "Git reset --hard HEAD" })
 
 map("n", "<leader>gcb", function()
   require("Yu-Leo.git").git_checkout_branch()
@@ -261,10 +264,33 @@ end, { desc = "Git switch" })
 map("n", "<leader>ghf", "<cmd>DiffviewFileHistory %<CR>", { desc = "Git: open file history" })
 
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Git: open Diffview" })
+map("n", "<leader>gD", function()
+  vim.api.nvim_feedkeys(":DiffviewOpen", "n", false)
+end, { desc = "Git: open Diffview with params" })
 
 map("n", "<leader>gl", function()
   require("blame-column").toggle()
 end, { desc = "Git toggle blame" })
+
+map("n", "<leader>gu", function()
+  require("Yu-Leo.git").git_checkout_main_and_update()
+end, { desc = "Git checkout main and update" })
+
+map("n", "<leader>gz", function()
+  require("Yu-Leo.git").git_rebase_main()
+end, { desc = "Git rebase main" })
+
+map("n", "<leader>gZ", function()
+  vim.cmd "G rebase --continue"
+end, { desc = "Git rebabse --continue" })
+
+map("n", "<leader>go", function()
+  require("Yu-Leo.git").git_merge_main()
+end, { desc = "Git merge main" })
+
+map("n", "<leader>gO", function()
+  vim.cmd "G merge --continue"
+end, { desc = "Git merge --continue" })
 
 -- Navigation
 map("n", "]h", function()
@@ -355,6 +381,12 @@ end, { desc = "Open remote repo in browser" })
 map("n", "<leader><leader>l", "<cmd>GitPortal open_link<CR>", { desc = "Open link in neovim" })
 
 map("n", "<leader><leader>w", "<cmd>set wrap!<cr>", { desc = "Toggle line wraps", remap = true })
+
+map("n", "<leader><leader>s", "<cmd>TSContextToggle<cr>", { desc = "Toggle TS context", remap = true })
+
+map("n", "<leader><leader>t", function()
+  require("Yu-Leo.git").git_checkout_main_and_update()
+end, { desc = "TODO", remap = true })
 -- Double leader !>
 
 -- <! Some
@@ -363,6 +395,8 @@ map("n", "<leader>lf", function()
 end, { desc = "Format file", remap = true })
 
 map("n", "<leader>lw", "<cmd>GoFillStruct<CR>", { desc = "Go fill struct", remap = true })
+
+map("n", "<leader>le", "<cmd>LspRestart<CR>", { desc = "LSP restart", remap = true })
 
 map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode toggle" })
 
