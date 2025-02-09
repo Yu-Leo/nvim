@@ -385,7 +385,7 @@ map("n", "<leader><leader>w", "<cmd>set wrap!<cr>", { desc = "Toggle line wraps"
 map("n", "<leader><leader>s", "<cmd>TSContextToggle<cr>", { desc = "Toggle TS context", remap = true })
 
 map("n", "<leader><leader>t", function()
-  require("Yu-Leo.git").git_checkout_main_and_update()
+  -- Mapping for some tests
 end, { desc = "TODO", remap = true })
 -- Double leader !>
 
