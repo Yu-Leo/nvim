@@ -34,7 +34,7 @@ local gitbrowse_url_patterns = {
 }
 
 if private_exists then
-  local private_remote_patterns = private.get_private_remote_pattern()
+  local private_remote_patterns = private.get_private_remote_patterns()
   if private_remote_patterns ~= nil then
     table.insert(gitbrowse_remote_patterns, 1, private_remote_patterns)
   end

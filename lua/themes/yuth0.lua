@@ -116,6 +116,19 @@ M.polish_hl = {
     DiffviewDiffDelete = { bg = mix_col(M.base_30.red, M.base_30.black, 60) },
     DiffviewDiffDeleteDim = { bg = mix_col(M.base_30.red, M.base_30.black, 80) },
     DiffviewDiffAddAsDelete = { bg = mix_col(M.base_30.red, M.base_30.black, 80) },
+
+    DiffviewFilePanelFileName = { fg = M.base_16.base05 },
+
+    DiffviewStatusAdded = { fg = M.base_16.base0B },
+    DiffviewStatusUntracked = { fg = M.base_16.base0B },
+    DiffviewStatusModified = { fg = M.base_30.yellow },
+    DiffviewStatusRenamed = { fg = M.base_30.yellow },
+    DiffviewStatusDeleted = { fg = M.base_16.base08 },
+    DiffviewStatusUnmerged = { fg = M.base_16.base08 },
+
+    DiffviewFilePanelInsertions = { fg = M.base_16.base0B },
+    DiffviewFilePanelDeletions = { fg = M.base_16.base08 },
+    DiffviewFilePanelConflicts = { fg = M.base_16.base08 },
   },
 
   nvimtree = {
@@ -299,6 +312,9 @@ M.polish_hl = {
     StName = { bg = M.base_30.grey, fg = M.base_30.white },
     StGitHead = { bg = M.base_30.lightbg, fg = M.base_30.white },
     StPath = { bg = M.base_30.statusline_bg, fg = M.base_30.light_grey },
+    StPathYellow = { bg = M.base_30.statusline_bg, fg = M.base_30.yellow },
+    StPathTeal = { bg = M.base_30.statusline_bg, fg = M.base_30.teal },
+    StPathGreen = { bg = M.base_30.statusline_bg, fg = M.base_30.vibrant_green },
     StLspMsg = { bg = M.base_30.statusline_bg, fg = M.base_30.green },
     StCursor = { bg = M.base_30.statusline_bg, fg = M.base_30.light_grey },
 

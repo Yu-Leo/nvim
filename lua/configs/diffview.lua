@@ -82,7 +82,7 @@ require("diffview").setup {
       { "n", "<s-tab>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
       {
         "n",
-        "gf",
+        "go",
         actions.goto_file_edit,
         { desc = "Open the file in the previous tabpage" },
       },

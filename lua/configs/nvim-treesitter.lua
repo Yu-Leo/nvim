@@ -28,6 +28,7 @@ local ensure_installed = {
   "sql",
   "json5",
   "bash",
+  "http",
 }
 
 if brief_exists then

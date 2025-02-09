@@ -4,13 +4,13 @@
 
 - It's primarily set up to work with **Go projects**.
 - It’s also set up to work with **Lua projects**, as I developed this configuration in Neovim :)
-- Support for other languages is partially configured. Refer to the Languages & Features table below. 
+- Support for other languages is partially configured. Refer to the Languages & Features table below.
 - It includes the best **Git integration**, thanks to a variety of mappings and plugins.
 - It includes [NvChad](https://github.com/NvChad/NvChad) modules and some features and principles from [AstroNvim](https://github.com/AstroNvim/AstroNvim).
 
 <details><summary>🧮 Languages & Features Table</summary>
 
-| Lang/feature   | TS         | LSP        | Format     | Lint       | Neotests | Snippets    |
+| Lang/feature   | TS         | LSP        | Format     | Lint       | Neotests     | Snippets   |
 | -------------- | ---------- | ---------- | ---------- | ---------- | ------------ | ---------- |
 | Go             | ✅         | ✅         | ✅         | ✅         | ✅           | ✅         |
 | JS             | ✅         |            |            |            |              |            |
@@ -22,7 +22,7 @@
 | Bash           | ✅         |            |            |            |              |            |
 | **------**     | **------** | **------** | **------** | **------** | **------**   | **------** |
 | md             | ✅         |            |            |            | ❎           |            |
-| json           | ✅         |            |            |            | ❎           |            |
+| json           | ✅         |            | ✅         |            | ❎           |            |
 | yaml           | ✅         |            |            |            | ❎           |            |
 | toml           | ✅         |            |            |            | ❎           |            |
 | docker<br>file | ✅         |            |            |            | ❎           |            |
@@ -41,7 +41,7 @@
 ### 🎲 General
 
 - **The tool should simplify and speed up my work.** This configuration is designed to make editing text and source code more convenient and efficient. If some solution looks strange but it's convenient for me, I'll use it.
-- **Minimalism.** If I don't use the plugin, I delete it. If I don't use mapping, I delete it. The configuration includes only the features I need. 
+- **Minimalism.** If I don't use the plugin, I delete it. If I don't use mapping, I delete it. The configuration includes only the features I need.
 - **Integrity.** I have configured the plugins so that they look like a single unit. I try to use the same UI/UX principles everywhere.
 - **Minimum UI - maximum UX**. I minimize the information displayed on the screen, but leave plenty of options in the keyboard shortcuts.
 
@@ -77,7 +77,7 @@ All plugins and extensions will be installed and configured **automatically**.
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - git
 
-### 🗑️ Uninstallation (linux / macos)
+### 🗑️ Uninstallation (Linux / MacOS)
 
 ```shell
 # Remove config
@@ -115,10 +115,12 @@ rm -rf ~/.local/share/nvim
 ## 🚀 Development
 
 - It's still a **Work In Progress** and is unlikely to ever be fully stable. I change and improve this configuration almost every day.
-- I’ve spent over **150 hours** creating and refining this configuration. I will be glad if you find something useful in it for yourself.
 - There are **no guarantees of backward compatibility**.
-- There are two branches in this repository: `main` and `develop`. The `develop` branch contains the most up-to-date, but less stable version. Periodically, I squash commits in the `develop` branch and merge them into `main`
+- The [`develop`](https://github.com/Yu-Leo/nvim/tree/develop) branch contains the most up-to-date, but less stable version. Periodically, I squash commits in it and merge them into `main`
 - Check out **my neovim plugins**:
     - [`Yu-Leo/blame-column.nvim`](https://github.com/Yu-Leo/blame-column.nvim) - displaying git blame information
+    - [`Yu-Leo/gosigns.nvim`](https://github.com/Yu-Leo/gosigns.nvim) - visualizing some Go hints
+    - [`Yu-Leo/cmp-go-pkgs`](https://github.com/Yu-Leo/cmp-go-pkgs) - nvim-cmp source providing the names of Go packages to import
 - Check out **my other dotfiles**: [`Yu-Leo/dotfiles`](https://github.com/Yu-Leo/dotfiles)
+- I’ve spent over **170 hours** creating this configuration and my own plugins. I will be glad if you find something useful in them for yourself.
 - License: [MIT](./LICENSE). Author: [@Yu-Leo](https://github.com/Yu-Leo)

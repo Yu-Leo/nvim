@@ -62,6 +62,13 @@ autocmd({ "LspAttach" }, {
   end,
 })
 
+autocmd({ "LspAttach" }, {
+  pattern = { "*.go" },
+  callback = function(args)
+    require("cmp_go_pkgs").init_items(args)
+  end,
+})
+
 -- For refresh nvim-tree after switching form the diffview tab
 autocmd({ "TabEnter" }, {
   callback = function(_)
