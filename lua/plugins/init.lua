@@ -98,7 +98,7 @@ return {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     config = function()
-      require "configs.lspconfig"
+      require "configs.nvim-lspconfig"
     end,
   },
   {
@@ -130,6 +130,7 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
+        "Yu-Leo/cmp-go-pkgs",
       },
     },
     config = function()
@@ -320,5 +321,27 @@ return {
     },
     opts = {},
     ft = { "curl" },
+  },
+  {
+    "Yu-Leo/gosigns.nvim",
+    ft = "go",
+    cmd = { "GosignsEnable", "GosignsDisable", "GosignsToggle" },
+    opts = {
+      signs = {
+        chars = {
+          go_comment = {
+            hl = "@string",
+          },
+        },
+      },
+    },
+  },
+  {
+    "tyru/vim-textobj-underscore",
+    branch = "support-3-cases",
+    dependencies = {
+      "kana/vim-textobj-user",
+    },
+    event = "BufEnter",
   },
 }

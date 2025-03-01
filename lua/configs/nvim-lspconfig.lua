@@ -23,6 +23,7 @@ vim.diagnostic.config {
 
 -- Hack to override options for hover & signature_help float windows
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
   opts.border = "single"
@@ -40,6 +41,67 @@ if brief_exists then
   brief.inject_brief_lsp()
 end
 
+local filter_references = function(result)
+  if result == nil then
+    return nil
+  end
+
+  if #result == 0 then
+    return result
+  end
+
+  local current_position = vim.api.nvim_win_get_cursor(0)
+  local current_uri = vim.uri_from_bufnr(0)
+
+  local filtered_result = {}
+
+  for _, ref in ipairs(result) do
+    if
+      ref.uri ~= current_uri
+      or ref.range.start.line ~= current_position[1] - 1
+      or ref.range.start.character > current_position[2]
+    then
+      table.insert(filtered_result, ref)
+    end
+  end
+
+  return filtered_result
+end
+
+local textDocument_references_handler = function(_, result, ctx, config)
+  result = filter_references(result)
+
+  if not result or vim.tbl_isempty(result) then
+    vim.notify "No references found"
+    return
+  end
+
+  local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
+  config = config or {}
+
+  if #result == 1 then
+    vim.lsp.util.jump_to_location(result[1], client.offset_encoding, config.reuse_win)
+    return
+  end
+
+  local title = "References"
+  local items = vim.lsp.util.locations_to_items(result, client.offset_encoding)
+
+  local list = { title = title, items = items, context = ctx }
+  if config.loclist then
+    vim.fn.setloclist(0, {}, " ", list)
+    vim.cmd.lopen()
+  elseif config.on_list then
+    assert(vim.is_callable(config.on_list), "on_list is not a function")
+    config.on_list(list)
+  else
+    vim.fn.setqflist({}, " ", list)
+    vim.cmd "botright copen"
+  end
+end
+
+vim.lsp.handlers["textDocument/references"] = textDocument_references_handler
+
 -- ----------------------------------DEFAULT FUNCTIONS -----------------------------------
 local on_attach = function(client, bufnr)
   local function opts(desc)
@@ -54,7 +116,10 @@ local on_attach = function(client, bufnr)
   map("n", "gd", vim.lsp.buf.definition, opts "go to definition")
   map("n", "gi", vim.lsp.buf.implementation, opts "go to implementation")
   map("n", "<leader>D", vim.lsp.buf.type_definition, opts "go to type definition")
-  map("n", "gr", vim.lsp.buf.references, opts "show references")
+  map("n", "gk", function()
+    local context = { includeDeclaration = false }
+    vim.lsp.buf.references(context)
+  end, opts "show references")
   map("n", "K", function()
     return vim.lsp.buf.hover()
   end, opts "hover")

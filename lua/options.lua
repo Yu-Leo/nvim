@@ -74,6 +74,7 @@ vim.filetype.add {
   extension = {
     brief = "brief",
     curl = "curl",
+    http = "http",
   },
 }
 

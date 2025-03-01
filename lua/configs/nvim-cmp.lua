@@ -50,6 +50,7 @@ local function cmdline_mappings()
   return {
     ["<Tab>"] = { c = next_item_with_fallback },
     ["<S-Tab>"] = { c = prev_item_with_fallback },
+    ["<C-i>"] = { c = cmp.mapping.complete() },
     ["<C-j>"] = { c = next_item_with_fallback },
     ["<C-k>"] = { c = prev_item_with_fallback },
     ["<Esc>"] = { c = abort_with_fallback },
@@ -60,6 +61,7 @@ end
 
 local function common_mappings()
   return {
+    ["<C-i>"] = cmp.mapping.complete(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-d>"] = cmp.mapping.open_docs(),
@@ -99,6 +101,7 @@ local format_func = function(entry, item)
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
     luasnip = "[Snippet]",
+    go_pkgs = "[Go pkgs]",
   }
 
   item.menu = sources[entry.source.name]
@@ -133,31 +136,27 @@ cmp.setup {
   completion = {
     completeopt = "menu,menuone",
   },
-
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
-
   mapping = common_mappings(),
-
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "path" },
+    { name = "go_pkgs" },
   },
   view = {
     docs = {
       auto_open = false,
     },
   },
-
   formatting = {
     format = format_func,
     fields = { "kind", "abbr", "menu" },
   },
-
   window = {
     completion = {
       scrollbar = false,
@@ -165,7 +164,6 @@ cmp.setup {
       winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None,FloatBorder:CmpBorder",
       border = "single",
     },
-
     documentation = {
       border = "single",
       winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder",

@@ -374,22 +374,24 @@ map("n", "<leader><leader>n", function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle relative number" })
 
-map({ "n", "v" }, "<leader><leader>r", function()
-  Snacks.gitbrowse.open()
-end, { desc = "Open remote repo in browser" })
-
-map("n", "<leader><leader>l", "<cmd>GitPortal open_link<CR>", { desc = "Open link in neovim" })
-
 map("n", "<leader><leader>w", "<cmd>set wrap!<cr>", { desc = "Toggle line wraps", remap = true })
 
 map("n", "<leader><leader>s", "<cmd>TSContextToggle<cr>", { desc = "Toggle TS context", remap = true })
 
+map("n", "<leader><leader>v", "<cmd>TSPlaygroundToggle<CR>", { desc = "Toggle TS Playground", remap = true })
+
 map("n", "<leader><leader>t", function()
-  require("Yu-Leo.git").git_checkout_main_and_update()
+  -- Mapping for some tests
 end, { desc = "TODO", remap = true })
 -- Double leader !>
 
 -- <! Some
+map({ "n", "v" }, "<leader>r", function()
+  Snacks.gitbrowse.open()
+end, { desc = "Open remote repo in browser" })
+
+map("n", "<leader>R", "<cmd>GitPortal open_link<CR>", { desc = "Open link in neovim" })
+
 map("n", "<leader>lf", function()
   require("conform").format()
 end, { desc = "Format file", remap = true })

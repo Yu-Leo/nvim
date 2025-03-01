@@ -168,6 +168,28 @@ local render_block_git_head = function(state)
   return "", 0
 end
 
+---@param content string
+---@return string
+local get_path_hl_by_content = function(content)
+  if string.find(content, "generated") then
+    return "%#StPathYellow#"
+  end
+
+  if string.find(content, "/vendor/") then
+    return "%#StPathTeal#"
+  end
+
+  if string.find(content, "/mocks/") then
+    return "%#StPathYellow#"
+  end
+
+  if string.find(content, "_test.go") then
+    return "%#StPathGreen#"
+  end
+
+  return "%#StPath#"
+end
+
 local render_block_path_full = function(state)
   local type = state.type
 
@@ -186,12 +208,12 @@ local render_block_path_full = function(state)
 
   if type == "FILE_IN_CWD" then
     local content = "  " .. state.cwd:match "([^/\\]+)[/\\]*$" .. "/" .. vim.fn.expand "%:~:." .. " "
-    return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
+    return get_path_hl_by_content(content) .. content, vim.fn.strdisplaywidth(content)
   end
 
   if type == "FILE_NOT_IN_CWD" then
     local content = " " .. vim.fn.expand "%:~" .. " "
-    return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
+    return get_path_hl_by_content(content) .. content, vim.fn.strdisplaywidth(content)
   end
 
   if type == "FUGITIVE" then
@@ -238,7 +260,7 @@ local render_block_path_middle = function(state)
 
   if type == "FILE_IN_CWD" then
     local content = "  " .. "/" .. vim.fn.expand "%:~:." .. " "
-    return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
+    return get_path_hl_by_content(content) .. content, vim.fn.strdisplaywidth(content)
   end
 
   if type == "FUGITIVE" then
@@ -256,7 +278,7 @@ local render_block_path_middle = function(state)
 
   if type == "FILE_NOT_IN_CWD" then
     local content = " " .. vim.fn.expand "%:~" .. " "
-    return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
+    return get_path_hl_by_content(content) .. content, vim.fn.strdisplaywidth(content)
   end
 
   return "", 0
