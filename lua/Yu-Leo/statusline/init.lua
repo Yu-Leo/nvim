@@ -175,12 +175,12 @@ local get_path_hl_by_content = function(content)
     return "%#StPathYellow#"
   end
 
-  if string.find(content, "/vendor/") then
-    return "%#StPathTeal#"
-  end
-
   if string.find(content, "/mocks/") then
     return "%#StPathYellow#"
+  end
+
+  if string.find(content, "/vendor/") then
+    return "%#StPathTeal#"
   end
 
   if string.find(content, "_test.go") then

@@ -2,7 +2,7 @@ local lint = require "lint"
 
 lint.linters_by_ft = {
   -- lua = { "luacheck" },
-  go = { "golangcilint" },
+  -- go = { "golangcilint" },
 }
 
 lint.linters.golangcilint.args = {

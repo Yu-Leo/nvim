@@ -42,6 +42,8 @@ o.updatetime = 250
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
 
+o.quickfixtextfunc = [[{info -> v:lua.require('Yu-Leo.qf').qftf(info)}]]
+
 -- disable some default providers
 g.loaded_node_provider = 0
 g.loaded_python3_provider = 0
