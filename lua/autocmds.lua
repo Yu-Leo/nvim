@@ -75,3 +75,10 @@ autocmd({ "TabEnter" }, {
     require("nvim-tree.api").tree.reload()
   end,
 })
+
+autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.wo.statusline = "%#StModeNormal#█%#StName# 󰈚 Quickfix List %#StBase#%=%#StCursor# %l:%c "
+  end,
+})
