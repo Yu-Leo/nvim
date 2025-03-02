@@ -16,7 +16,14 @@ o.smartindent = true
 o.tabstop = 2
 o.softtabstop = 2
 
-opt.fillchars = { eob = " " }
+opt.fillchars = {
+  eob = " ",
+  fold = "-",
+  foldclose = "▶",
+  foldopen = "▼",
+  foldsep = " ",
+}
+
 o.ignorecase = true
 o.smartcase = true
 o.mouse = "a"
@@ -42,6 +49,8 @@ o.updatetime = 250
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
 
+o.quickfixtextfunc = [[{info -> v:lua.require('Yu-Leo.qf').qftf(info)}]]
+
 -- disable some default providers
 g.loaded_node_provider = 0
 g.loaded_python3_provider = 0
@@ -53,6 +62,8 @@ local is_windows = vim.fn.has "win32" ~= 0
 local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
 vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
+
+o.diffopt = "vertical,internal,filler,closeoff,linematch:40"
 
 -- -------------------------------------------------------------------------------------------------
 
@@ -91,3 +102,12 @@ vim.filetype.add {
 
 -- Variables
 g.disable_autoformat = false
+
+o.commentstring = "// %s"
+
+-- ---------------------
+
+vim.o.foldcolumn = "0"
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true

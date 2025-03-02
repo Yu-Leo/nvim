@@ -5,6 +5,8 @@ lint.linters_by_ft = {
   go = { "golangcilint" },
 }
 
+lint.linters.golangcilint.ignore_exitcode = true
+
 lint.linters.golangcilint.args = {
   "run",
   "--out-format",
@@ -12,4 +14,5 @@ lint.linters.golangcilint.args = {
   "--show-stats=false",
   "--print-issued-lines=false",
   "--print-linter-name=false",
+  "--issues-exit-code=0",
 }

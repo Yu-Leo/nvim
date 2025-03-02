@@ -129,6 +129,15 @@ M.polish_hl = {
     DiffviewFilePanelInsertions = { fg = M.base_16.base0B },
     DiffviewFilePanelDeletions = { fg = M.base_16.base08 },
     DiffviewFilePanelConflicts = { fg = M.base_16.base08 },
+
+    QuickFixLine = { bg = "NONE" },
+    FoldColumn = { fg = M.base_16.base03 },
+
+    -- NvimTree paths
+    NvimTreePathYellow = { bg = mix_col(M.base_30.yellow, M.base_30.darker_black, 80), fg = M.base_16.base05 },
+    NvimTreePathTeal = { bg = mix_col("#4495aa", M.base_30.darker_black, 70), fg = M.base_16.base05 },
+    NvimTreePathGreen = { bg = mix_col("#60aa39", M.base_30.darker_black, 70), fg = M.base_16.base05 },
+    NvimTreePathDarkPurple = { bg = mix_col(M.base_30.dark_purple, M.base_30.darker_black, 70), fg = M.base_16.base05 },
   },
 
   nvimtree = {
@@ -170,6 +179,12 @@ M.polish_hl = {
 
     NvimTreeDiagnosticWarnFileHL = { undercurl = true, sp = M.base_16.base0A, link = "" },
     NvimTreeDiagnosticWarnFolderHL = { undercurl = true, sp = M.base_16.base0A, link = "" },
+
+    -- Diff
+    DiffAdd = { bg = mix_col(M.base_30.green, M.base_30.black, 80) },
+    DiffChange = { bg = mix_col(M.base_30.yellow, M.base_30.black, 80) },
+    DiffText = { bg = mix_col(M.base_30.yellow, M.base_30.black, 80) },
+    DiffDelete = { bg = mix_col(M.base_30.red, M.base_30.black, 80) },
   },
   syntax = {
     Boolean = { fg = M.base_16.base05 },
@@ -303,6 +318,8 @@ M.polish_hl = {
     ["@comment.warning"] = { fg = M.base_16.base05 },
     ["@comment.note"] = { fg = M.base_16.base05 },
     ["@comment.danger"] = { fg = M.base_16.base05 },
+
+    ["@sql.queries"] = { bg = mix_col("#20A969", M.base_30.black, 87) },
   },
 
   statusline = {
@@ -311,10 +328,11 @@ M.polish_hl = {
 
     StName = { bg = M.base_30.grey, fg = M.base_30.white },
     StGitHead = { bg = M.base_30.lightbg, fg = M.base_30.white },
-    StPath = { bg = M.base_30.statusline_bg, fg = M.base_30.light_grey },
-    StPathYellow = { bg = M.base_30.statusline_bg, fg = M.base_30.yellow },
-    StPathTeal = { bg = M.base_30.statusline_bg, fg = M.base_30.teal },
-    StPathGreen = { bg = M.base_30.statusline_bg, fg = M.base_30.vibrant_green },
+    StPath = { bg = M.base_30.statusline_bg, fg = M.base_16.base05 },
+    StPathYellow = { bg = mix_col(M.base_30.yellow, M.base_30.statusline_bg, 80), fg = M.base_16.base05 },
+    StPathTeal = { bg = mix_col("#4495aa", M.base_30.statusline_bg, 80), fg = M.base_16.base05 },
+    StPathGreen = { bg = mix_col("#60aa39", M.base_30.statusline_bg, 80), fg = M.base_16.base05 },
+    StPathDarkPurple = { bg = mix_col(M.base_30.dark_purple, M.base_30.statusline_bg, 80), fg = M.base_16.base05 },
     StLspMsg = { bg = M.base_30.statusline_bg, fg = M.base_30.green },
     StCursor = { bg = M.base_30.statusline_bg, fg = M.base_30.light_grey },
 
