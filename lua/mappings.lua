@@ -359,17 +359,6 @@ map("n", "<leader><leader>c", function()
   vim.notify("spell: " .. tostring(vim.o.spell))
 end, { desc = "Toggle spell check" })
 
-map("n", "<leader><leader>f", function()
-  if vim.g.disable_autoformat then
-    vim.g.disable_autoformat = false
-    print "enable autoformat"
-  else
-    vim.g.disable_autoformat = true
-    print "disable autoformat"
-  end
-  vim.cmd.redrawstatus()
-end, { desc = "Toggle autoformat on save", remap = true })
-
 map("n", "<leader><leader>n", function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle relative number" })
@@ -409,4 +398,15 @@ map("n", "<leader>ot", require("Yu-Leo.common").go_to_test_file, { desc = "go to
 
 map("n", "[<Space>", "m`O<Esc>``", { desc = "Insert empty line above" })
 map("n", "]<Space>", "m`o<Esc>``", { desc = "Insert empty line bellow" })
+
+map("n", "<leader>V", function()
+  if vim.g.disable_autoformat then
+    vim.g.disable_autoformat = false
+    print "enable autoformat"
+  else
+    vim.g.disable_autoformat = true
+    print "disable autoformat"
+  end
+  vim.cmd.redrawstatus()
+end, { desc = "Toggle autoformat on save", remap = true })
 -- Some !>
