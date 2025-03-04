@@ -7,7 +7,7 @@
   "blame-column.nvim": { "branch": "main", "commit": "46dfc8acc2a1d23064c06e024d2887997f1cf468" },
   "cd-project.nvim": { "branch": "main", "commit": "7618e7eda22bb2fad9137de6aa92c7488137d5df" },
   "cmp-cmdline": { "branch": "main", "commit": "d250c63aa13ead745e3a40f61fdd3470efde3923" },
-  "cmp-go-pkgs": { "branch": "main", "commit": "50f3d847091b8f42012ab578cdca7269404d5aa0" },
+  "cmp-go-pkgs": { "branch": "main", "commit": "150518bb67b9927a5fe71c107412462fe38644e6" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "99290b3ec1322070bcfb9e846450a46f6efa50f0" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
