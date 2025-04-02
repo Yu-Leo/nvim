@@ -14,12 +14,15 @@ return {
   },
   {
     "nvzone/volt",
+    enabled = false, -- TODO
   },
   {
     "nvzone/menu",
+    enabled = false, -- TODO
   },
   {
     "nvzone/minty",
+    enabled = false, -- TODO
     cmd = { "Huefy", "Shades" },
   },
   {
@@ -45,7 +48,9 @@ return {
     "nvim-tree/nvim-tree.lua",
     version = "*",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = require "configs.nvim-tree",
+    config = function()
+      require "configs.nvim-tree"
+    end,
   },
   {
     "nvim-tree/nvim-web-devicons",
@@ -71,10 +76,6 @@ return {
     opts = {
       debounce_delay = 500,
     },
-  },
-  {
-    "LintaoAmons/cd-project.nvim",
-    cmd = { "CdProject", "CdProjectTab", "CdProjectAdd", "CdProjectBack", "CdProjectManualAdd", "CdSearchAndAdd" },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -212,10 +213,6 @@ return {
     opts = require "configs.todo-comments",
   },
   {
-    "folke/zen-mode.nvim",
-    cmd = { "ZenMode" },
-  },
-  {
     "kevinhwang91/nvim-bqf",
     event = { "BufEnter" },
     opts = require "configs.nvim-bqf",
@@ -300,11 +297,6 @@ return {
     opts = require "configs.toggleterm",
   },
   {
-    "numToStr/Comment.nvim",
-    event = { "BufEnter" },
-    opts = {},
-  },
-  {
     "lewis6991/satellite.nvim",
     event = "BufEnter",
     opts = require "configs.satellite",
@@ -337,11 +329,33 @@ return {
     },
   },
   {
-    "tyru/vim-textobj-underscore",
-    branch = "support-3-cases",
+    "kevinhwang91/nvim-ufo",
     dependencies = {
-      "kana/vim-textobj-user",
+      "kevinhwang91/promise-async",
+      {
+        "luukvbaal/statuscol.nvim",
+        opts = function()
+          local builtin = require "statuscol.builtin"
+          return {
+            setopt = true,
+            segments = {
+              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+              { text = { "%s" }, click = "v:lua.ScSa" },
+              {
+                text = { builtin.lnumfunc, " " },
+                condition = { true, builtin.not_empty },
+                click = "v:lua.ScLa",
+              },
+            },
+          }
+        end,
+      },
     },
     event = "BufEnter",
+    opts = {
+      provider_selector = function(bufnr, filetype, buftype)
+        return { "treesitter", "indent" }
+      end,
+    },
   },
 }

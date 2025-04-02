@@ -20,6 +20,8 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 map("n", "n", "nzz", { desc = "Go to next search result" })
 map("n", "N", "Nzz", { desc = "Go to prev search result" })
 
+map("n", "zo", "za", { desc = "Toggle fold" })
+
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -215,6 +217,7 @@ end, { desc = "Telescope git branches" })
 map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal escape terminal mode" })
 
 map({ "n", "t" }, "<M-h>", "<cmd>ToggleTerm<CR>", { desc = "Toggle horizontal terminal" })
+map({ "n", "t" }, "<M-H>", "<cmd>ToggleTerm dir=%:p:h<CR>", { desc = "Toggle horizontal terminal in file's directory" })
 -- Terminal !>
 
 -- <! Git
@@ -359,17 +362,6 @@ map("n", "<leader><leader>c", function()
   vim.notify("spell: " .. tostring(vim.o.spell))
 end, { desc = "Toggle spell check" })
 
-map("n", "<leader><leader>f", function()
-  if vim.g.disable_autoformat then
-    vim.g.disable_autoformat = false
-    print "enable autoformat"
-  else
-    vim.g.disable_autoformat = true
-    print "disable autoformat"
-  end
-  vim.cmd.redrawstatus()
-end, { desc = "Toggle autoformat on save", remap = true })
-
 map("n", "<leader><leader>n", function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle relative number" })
@@ -386,6 +378,8 @@ end, { desc = "TODO", remap = true })
 -- Double leader !>
 
 -- <! Some
+map("n", "<leader>fl", "<cmd>copen<CR>", { desc = "Open quickfix" })
+
 map({ "n", "v" }, "<leader>r", function()
   Snacks.gitbrowse.open()
 end, { desc = "Open remote repo in browser" })
@@ -409,4 +403,15 @@ map("n", "<leader>ot", require("Yu-Leo.common").go_to_test_file, { desc = "go to
 
 map("n", "[<Space>", "m`O<Esc>``", { desc = "Insert empty line above" })
 map("n", "]<Space>", "m`o<Esc>``", { desc = "Insert empty line bellow" })
+
+map("n", "<leader>V", function()
+  if vim.g.disable_autoformat then
+    vim.g.disable_autoformat = false
+    print "enable autoformat"
+  else
+    vim.g.disable_autoformat = true
+    print "disable autoformat"
+  end
+  vim.cmd.redrawstatus()
+end, { desc = "Toggle autoformat on save", remap = true })
 -- Some !>

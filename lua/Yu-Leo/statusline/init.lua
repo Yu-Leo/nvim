@@ -69,7 +69,7 @@ local get_content_block_name = function(state)
   end
 
   if type == "TERMINAL" then
-    return " " .. "" .. " " .. state.name .. " "
+    return " " .. "" .. " " .. "Terminal" .. " "
   end
 
   if type == "BLAME" then
@@ -171,15 +171,15 @@ end
 ---@param content string
 ---@return string
 local get_path_hl_by_content = function(content)
-  if string.find(content, "generated") then
-    return "%#StPathYellow#"
-  end
-
   if string.find(content, "/vendor/") then
     return "%#StPathTeal#"
   end
 
   if string.find(content, "/mocks/") then
+    return "%#StPathDarkPurple#"
+  end
+
+  if string.find(content, "generated") then
     return "%#StPathYellow#"
   end
 

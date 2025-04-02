@@ -1,3 +1,6 @@
+local nvim_tree = require "nvim-tree"
+local yu_leo_nvim_tree = require "Yu-Leo.nvim-tree"
+
 local function my_on_attach(bufnr)
   local api = require "nvim-tree.api"
 
@@ -37,7 +40,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set("n", "L", api.node.run.system, opts "Run System")
 end
 
-return {
+nvim_tree.setup {
   on_attach = my_on_attach,
   filters = {
     dotfiles = false,
@@ -55,6 +58,17 @@ return {
     ignore = false,
   },
   renderer = {
+    decorators = {
+      yu_leo_nvim_tree.PathDecorator,
+      "Git",
+      "Open",
+      "Hidden",
+      "Modified",
+      "Bookmark",
+      "Diagnostics",
+      "Copied",
+      "Cut",
+    },
     root_folder_label = ":t:s?$?/...?",
     highlight_git = "name",
     highlight_diagnostics = "name",

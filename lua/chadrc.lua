@@ -22,7 +22,7 @@ local minitabs = function()
 end
 
 M.base46 = {
-  theme = "yuth0",
+  theme = "cozy",
 }
 
 M.ui = {

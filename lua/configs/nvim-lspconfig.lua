@@ -115,7 +115,7 @@ local on_attach = function(client, bufnr)
   map("n", "gD", vim.lsp.buf.declaration, opts "go to declaration")
   map("n", "gd", vim.lsp.buf.definition, opts "go to definition")
   map("n", "gi", vim.lsp.buf.implementation, opts "go to implementation")
-  map("n", "<leader>D", vim.lsp.buf.type_definition, opts "go to type definition")
+  map("n", "gj", vim.lsp.buf.type_definition, opts "go to type definition")
   map("n", "gk", function()
     local context = { includeDeclaration = false }
     vim.lsp.buf.references(context)
