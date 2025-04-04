@@ -52,6 +52,8 @@ map("v", "D", '"pD')
 
 map("n", "x", '"_x')
 map("n", "X", '"_X')
+map("v", "x", '"_x')
+map("v", "X", '"_X')
 
 map("n", "<leader>p", '"pp')
 map("n", "<leader>P", '"pP')
