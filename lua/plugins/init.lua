@@ -177,7 +177,6 @@ return {
         version = "^1.0.0",
       },
       "mollerhoj/telescope-recent-files.nvim",
-      "nvim-telescope/telescope-hop.nvim",
       {
         "isak102/telescope-git-file-history.nvim",
         dependencies = {

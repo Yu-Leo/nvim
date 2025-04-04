@@ -42,10 +42,6 @@ telescope.setup {
         ["<C-c>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-c>"] = actions.send_selected_to_qflist + actions.open_qflist,
 
-        ["<C-h>"] = function(opts)
-          require("plenary.reload").reload_module "telescope"
-          telescope.extensions.hop.hop(opts)
-        end,
       },
       n = {
         ["<LeftMouse>"] = {
@@ -82,11 +78,6 @@ telescope.setup {
         ["<M-j>"] = actions.preview_scrolling_down,
         ["<M-h>"] = actions.preview_scrolling_left,
         ["<M-l>"] = actions.preview_scrolling_right,
-
-        ["<C-h>"] = function(opts)
-          require("plenary.reload").reload_module "telescope"
-          telescope.extensions.hop.hop(opts)
-        end,
 
         ["?"] = actions.which_key,
       },
@@ -134,13 +125,9 @@ telescope.setup {
       no_ignore = true,
       no_ignore_parent = true,
     },
-    hop = {
-      sign_hl = "MoreMsg",
-    },
   },
 }
 
 telescope.load_extension "recent-files"
 telescope.load_extension "live_grep_args"
-telescope.load_extension "hop"
 telescope.load_extension "git_file_history"
