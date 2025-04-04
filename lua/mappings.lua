@@ -393,6 +393,15 @@ map("n", "<leader>lf", function()
 end, { desc = "Format file", remap = true })
 
 map("n", "<leader>lw", "<cmd>GoFillStruct<CR>", { desc = "Go fill struct", remap = true })
+map("n", "<leader>lg", "<cmd>GoGenerate<CR>", { desc = "Go generate for file", remap = true })
+map("n", "<leader>lu", "<cmd>GoModTidy<CR>", { desc = "Go mod tidy", remap = true })
+map("n", "<leader>li", "<cmd>GoModVendor<CR>", { desc = "Go mod vendor", remap = true })
+map("n", "<leader>lt", function()
+  require("go.lsp").codeaction { cmd = "apply_fix", only = "refactor.rewrite", filters = { "split_lines" } }
+end, { desc = "Go split lines", remap = true })
+map("n", "<leader>lT", function()
+  require("go.lsp").codeaction { cmd = "apply_fix", only = "refactor.rewrite", filters = { "join_lines" } }
+end, { desc = "Go join lines", remap = true })
 
 map("n", "<leader>le", "<cmd>LspRestart<CR>", { desc = "LSP restart", remap = true })
 
