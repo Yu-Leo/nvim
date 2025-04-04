@@ -25,19 +25,6 @@ local function my_on_attach(bufnr)
   vim.keymap.set("n", "e", api.fs.rename_basename, opts "Rename: Basename")
   vim.keymap.set("n", "gc", api.fs.copy.absolute_path, opts "Copy Absolute Path")
   vim.keymap.set("n", "C", api.fs.copy.relative_path, opts "Copy Relative Path")
-
-  -- TODO: MAYBE DELETE
-  vim.keymap.set("n", "K", api.node.show_info_popup, opts "Info")
-  vim.keymap.set("n", "<C-v>", api.node.open.vertical, opts "Open: Vertical Split")
-
-  vim.keymap.set("n", "bd", api.marks.bulk.delete, opts "Delete Bookmarked")
-  vim.keymap.set("n", "bt", api.marks.bulk.trash, opts "Trash Bookmarked")
-  vim.keymap.set("n", "bmv", api.marks.bulk.move, opts "Move Bookmarked")
-  vim.keymap.set("n", "M", api.tree.toggle_no_bookmark_filter, opts "Toggle Filter: No Bookmark")
-  vim.keymap.set("n", "m", api.marks.toggle, opts "Toggle Bookmark")
-
-  vim.keymap.set("n", "R", api.tree.reload, opts "Refresh")
-  vim.keymap.set("n", "L", api.node.run.system, opts "Run System")
 end
 
 nvim_tree.setup {

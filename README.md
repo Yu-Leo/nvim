@@ -12,7 +12,7 @@
 
 | Lang/feature   | TS         | LSP        | Format     | Lint       | Neotests     | Snippets   |
 | -------------- | ---------- | ---------- | ---------- | ---------- | ------------ | ---------- |
-| Go             | ✅         | ✅         | ✅         | ✅         | ✅           | ✅         |
+| Go             | ✅         | ✅         | ✅         | ✅         | ✅           |            |
 | JS             | ✅         |            |            |            |              |            |
 | TS             | ✅         |            |            |            |              |            |
 | TSX            | ✅         |            |            |            |              |            |
@@ -107,7 +107,6 @@ rm -rf ~/.local/share/nvim
 │   ├── private  # Directory with the private part of the config. Added to .gitignore
 │   ├── themes/yuth0.lua  # My color theme
 │   └── usercmds.lua  # File with my custom commands
-├── snippets
 ├── queries
 └── spell
 ```
@@ -122,5 +121,5 @@ rm -rf ~/.local/share/nvim
     - [`Yu-Leo/gosigns.nvim`](https://github.com/Yu-Leo/gosigns.nvim) - visualizing some Go hints
     - [`Yu-Leo/cmp-go-pkgs`](https://github.com/Yu-Leo/cmp-go-pkgs) - nvim-cmp source providing the names of Go packages to import
 - Check out **my other dotfiles**: [`Yu-Leo/dotfiles`](https://github.com/Yu-Leo/dotfiles)
-- I’ve spent over **170 hours** creating this configuration and my own plugins. I will be glad if you find something useful in them for yourself.
+- I’ve spent over **200 hours** learning and practicing in Vim, creating this configuration and my own plugins. I will be glad if you find something useful in them for yourself.
 - License: [MIT](./LICENSE). Author: [@Yu-Leo](https://github.com/Yu-Leo)

@@ -1,5 +1,4 @@
 local cmp = require "cmp"
-local luasnip = require "luasnip"
 local api = vim.api
 
 local function next_item_with_fallback(fallback)
@@ -21,26 +20,6 @@ end
 local function abort_with_fallback(fallback)
   if cmp.visible() then
     cmp.abort()
-  else
-    fallback()
-  end
-end
-
-local function next_item_with_luasnip_and_fallback(fallback)
-  if cmp.visible() then
-    cmp.select_next_item()
-  elseif luasnip.expand_or_jumpable() then
-    luasnip.expand_or_jump()
-  else
-    fallback()
-  end
-end
-
-local function prev_item_with_luasnip_and_fallback(fallback)
-  if cmp.visible() then
-    cmp.select_prev_item()
-  elseif luasnip.jumpable(-1) then
-    luasnip.jump(-1)
   else
     fallback()
   end
@@ -71,8 +50,8 @@ local function common_mappings()
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
-    ["<Tab>"] = cmp.mapping(next_item_with_luasnip_and_fallback, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(prev_item_with_luasnip_and_fallback, { "i", "s" }),
+    ["<Tab>"] = cmp.mapping(next_item_with_fallback, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(prev_item_with_fallback, { "i", "s" }),
   }
 end
 
@@ -100,7 +79,6 @@ local format_func = function(entry, item)
   local sources = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
-    luasnip = "[Snippet]",
     go_pkgs = "[Go pkgs]",
   }
 
@@ -136,15 +114,9 @@ cmp.setup {
   completion = {
     completeopt = "menu,menuone",
   },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
   mapping = common_mappings(),
   sources = {
     { name = "nvim_lsp" },
-    { name = "luasnip" },
     { name = "path" },
     { name = "go_pkgs" },
   },

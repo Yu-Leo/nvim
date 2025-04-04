@@ -5,13 +5,14 @@ map("i", "jk", "<ESC>")
 
 map("n", "<C-a>", "ggVG")
 
-map("n", ";", ":", { desc = "Cmd enter command mode" })
+map({ "n", "v" }, ";", ":", { desc = "Cmd enter command mode" })
 
 map("n", "<leader>w", "<Cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>confirm q<CR>", { desc = "Window quit" })
 map("n", "<C-q>", "<cmd>confirm qall<CR>", { desc = "General quit neovim" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear highlights" })
+map("n", "<C-`>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 map("n", "q:", "", { desc = "Disable commands history" })
 
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
@@ -40,15 +41,11 @@ map("i", "<C-k>", "<Up>", { desc = "Move up" })
 -- Movements in insert mode !>
 
 -- <! Cut & delete
-map("n", "c", '"pc')
-map("n", "C", '"pC')
-map("v", "c", '"pc')
-map("v", "D", '"pC')
+map({ "n", "v" }, "c", '"pc')
+map({ "n", "v" }, "C", '"pC')
 
-map("n", "d", '"pd')
-map("n", "D", '"pD')
-map("v", "d", '"pd')
-map("v", "D", '"pD')
+map({ "n", "v" }, "d", '"pd')
+map({ "n", "v" }, "D", '"pD')
 
 map("n", "x", '"_x')
 map("n", "X", '"_X')
@@ -72,14 +69,15 @@ local keymap = {
     require("neoscroll").scroll(0.1, { move_cursor = false, duration = 100 })
   end,
 }
-local modes = { "n", "v", "x" }
 for key, func in pairs(keymap) do
-  vim.keymap.set(modes, key, func)
+  map({ "n", "v", "x" }, key, func)
 end
 -- Scroll !>
 
 -- <! Buffers
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
+
+map("n", "<C-m>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
 
 map("n", "]b", function()
   require("nvchad.tabufline").next()
@@ -98,9 +96,8 @@ map("n", "<leader>C", function()
 end, { desc = "Buffer close all" })
 
 map("n", "<leader>bc", function()
-  require("nvchad.tabufline").closeBufs_at_direction "left"
-  require("nvchad.tabufline").closeBufs_at_direction "right"
-end, { desc = "Buffer close all" })
+  require("Yu-Leo.buffers").close_all_hidden()
+end, { desc = "Buffer close all hidden" })
 
 map("n", ">b", function()
   require("nvchad.tabufline").move_buf(1)
@@ -124,6 +121,8 @@ map("n", "<A-S-h>", "<C-w>h<cmd>confirm q<CR>", { desc = "Close window left" })
 map("n", "<A-S-l>", "<C-w>l<cmd>confirm q<CR>", { desc = "Close window right" })
 map("n", "<A-S-j>", "<C-w>j<cmd>confirm q<CR>", { desc = "Close window down" })
 map("n", "<A-S-k>", "<C-w>k<cmd>confirm q<CR>", { desc = "Close window up" })
+
+map("n", "<A-S-u>", "<C-w>x", { desc = "Switch windows" })
 
 map("n", "<C-A-j>", "<Cmd>resize -2<CR>", { desc = "Resize window up" })
 map("n", "<C-A-k>", "<Cmd>resize +2<CR>", { desc = "Resize window down" })
@@ -157,10 +156,6 @@ map("n", "<Leader>sf", function()
 end, { desc = "Nvimtree show file" })
 -- NvimTree !>
 
--- <! CdProject
-map("n", "<leader>so", "<cmd>CdProject<CR>", { desc = "Projects open" })
--- CdProject !>
-
 -- <! Flash
 map({ "n", "x", "o" }, "s", function()
   require("flash").jump()
@@ -184,7 +179,7 @@ map("n", "<leader>F", function()
 end, { desc = "Telescope find files" })
 
 map("n", "<leader>fw", function()
-  require("telescope").extensions.live_grep_args.live_grep_args {
+  require("telescope.builtin").live_grep {
     additional_args = {
       "-F",
       "-S",
@@ -195,10 +190,17 @@ map("n", "<leader>fw", function()
 end, { desc = "Telescope find words" })
 
 map("n", "<leader>fo", function()
-  require("telescope.builtin").buffers()
-end, { desc = "Telescope find files" })
+  require("snipe").open_buffer_menu()
+end, { desc = "Find open buffers" })
 
-map("n", "<leader>fh", "<cmd>TodoTelescope<CR>", { desc = "Find todos" })
+map("n", "<leader>fh", function()
+  require("telescope.builtin").grep_string {
+    search = "TODO",
+    additional_args = function()
+      return { "-i" }
+    end,
+  }
+end, { desc = "Find todos" })
 
 map("n", "<leader>fm", function()
   require("telescope").extensions.git_file_history.git_file_history()
@@ -345,17 +347,6 @@ map("n", "[e", "<cmd>lua require('neotest').jump.prev({status = 'failed'})<CR>",
 map("n", "]e", "<cmd>lua require('neotest').jump.next({status = 'failed'})<CR>", { desc = "Run next failed test" })
 -- Neotest !>
 
--- <! Trouble
-map("n", "<leader>tx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble: full diagnostic" })
-map("n", "<leader>tX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Trouble: buffer diagnostic" })
-map(
-  "n",
-  "<leader>lD",
-  "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-  { desc = "Trouble: show lsp definitions / references / ..." }
-)
--- Trouble !>
-
 -- <! Double leader
 map("n", "<leader><leader>c", function()
   vim.opt_local.spell = not (vim.opt_local.spell:get())
@@ -378,6 +369,38 @@ end, { desc = "TODO", remap = true })
 -- Double leader !>
 
 -- <! Some
+map("n", "<leader>vo", function()
+  local start_line = vim.fn.line "."
+  local bufnr = vim.api.nvim_get_current_buf()
+  local total_lines = vim.api.nvim_buf_line_count(bufnr)
+
+  local function is_comment(line_nr)
+    local line = vim.fn.getline(line_nr)
+    return line:match "^%s*//" ~= nil
+  end
+
+  local top = start_line
+  while top > 1 and is_comment(top - 1) do
+    top = top - 1
+  end
+
+  local bottom = start_line
+  while bottom < total_lines and is_comment(bottom + 1) do
+    bottom = bottom + 1
+  end
+
+  vim.cmd(tostring(top))
+  vim.cmd "normal! V"
+  vim.cmd(tostring(bottom))
+end, { desc = "Select commented lines around", remap = true })
+
+map("n", "mp", "ysiW(%i<BS>, ", { desc = "Add return param", remap = true })
+map("n", "<leader>ti", "A // TODO: ", { desc = "Add TODO comment", remap = true })
+
+map("n", "mf", function()
+  require("Yu-Leo.moves").move_to_func_name()
+end, { desc = "Move to func name (golang)", remap = true })
+
 map("n", "<leader>fl", "<cmd>copen<CR>", { desc = "Open quickfix" })
 
 map({ "n", "v" }, "<leader>r", function()
@@ -391,10 +414,21 @@ map("n", "<leader>lf", function()
 end, { desc = "Format file", remap = true })
 
 map("n", "<leader>lw", "<cmd>GoFillStruct<CR>", { desc = "Go fill struct", remap = true })
+map("n", "<leader>lg", "<cmd>GoGenerate<CR>", { desc = "Go generate for file", remap = true })
+map("n", "<leader>lu", "<cmd>GoModTidy<CR>", { desc = "Go mod tidy", remap = true })
+map("n", "<leader>li", "<cmd>GoModVendor<CR>", { desc = "Go mod vendor", remap = true })
+map("n", "<leader>lt", function()
+  require("go.lsp").codeaction { cmd = "apply_fix", only = "refactor.rewrite", filters = { "split_lines" } }
+end, { desc = "Go split lines", remap = true })
+map("n", "<leader>lT", function()
+  require("go.lsp").codeaction { cmd = "apply_fix", only = "refactor.rewrite", filters = { "join_lines" } }
+end, { desc = "Go join lines", remap = true })
 
 map("n", "<leader>le", "<cmd>LspRestart<CR>", { desc = "LSP restart", remap = true })
 
-map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode toggle" })
+map("n", "<leader>os", function()
+  require("simple-boolean-toggle").toggle()
+end, { desc = "Toggle boolean value" })
 
 map("n", "<leader>/", "gcc", { desc = "Comment toggle", remap = true })
 map("v", "<leader>/", "gc", { desc = "Comment toggle", remap = true })

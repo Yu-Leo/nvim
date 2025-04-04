@@ -146,7 +146,7 @@ local render_block_git_head = function(state)
     return "", 0
   end
 
-  if type == "DIFFVIEWFILE" then -- TODO: refactor
+  if type == "DIFFVIEWFILE" then -- TODO: refactor 2025-05-10
     local hash, _ = string.match(state.path, ".git/([0-9a-f]+)(/.*)")
 
     if not hash then
@@ -217,7 +217,7 @@ local render_block_path_full = function(state)
   end
 
   if type == "FUGITIVE" then
-    local _, path = string.match(state.path, ".git//([0-9a-f]+)(/.*)") -- TODO: move to func
+    local _, path = string.match(state.path, ".git//([0-9a-f]+)(/.*)") -- TODO: move to func 2025-05-10
     if path then
       local content = "  " .. state.cwd:match "([^/\\]+)[/\\]*$" .. path .. " "
       return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
@@ -226,7 +226,7 @@ local render_block_path_full = function(state)
   end
 
   if type == "DIFFVIEWFILE" then
-    local _, path = string.match(state.path, ".git/([0-9a-f]+)(/.*)") -- TODO: move to func
+    local _, path = string.match(state.path, ".git/([0-9a-f]+)(/.*)") -- TODO: move to func 2025-05-10
 
     if not path then
       _, path = string.match(state.path, ".git/(:0:)(/.*)")
@@ -264,7 +264,7 @@ local render_block_path_middle = function(state)
   end
 
   if type == "FUGITIVE" then
-    local _, path = string.match(state.path, ".git//([0-9a-f]+)(/.*)") -- TODO: move to func
+    local _, path = string.match(state.path, ".git//([0-9a-f]+)(/.*)") -- TODO: move to func 2025-05-10
     if path then
       local content = "  " .. path .. " "
       return "%#StPath#" .. content, vim.fn.strdisplaywidth(content)
@@ -273,7 +273,7 @@ local render_block_path_middle = function(state)
   end
 
   if type == "DIFFVIEWFILE" then
-    return "", 0 -- TODO
+    return "", 0 -- TODO 2025-05-10
   end
 
   if type == "FILE_NOT_IN_CWD" then
