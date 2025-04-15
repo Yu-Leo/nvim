@@ -7,14 +7,7 @@ map("n", "<C-a>", "ggVG")
 
 map("n", ";", ":", { desc = "Cmd enter command mode" })
 
--- TODO: test
-map("n", "<leader>w", function()
-  require("conform").format {
-    bufnr = 0,
-  }
-  vim.cmd("w")
-end, { desc = "Save" })
-
+map("n", "<leader>w", "<Cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>confirm q<CR>", { desc = "Window quit" })
 map("n", "<C-q>", "<cmd>confirm qall<CR>", { desc = "General quit neovim" })
 
@@ -59,8 +52,6 @@ map("v", "D", '"pD')
 
 map("n", "x", '"_x')
 map("n", "X", '"_X')
-map("v", "x", '"_x')
-map("v", "X", '"_X')
 
 map("n", "<leader>p", '"pp')
 map("n", "<leader>P", '"pP')

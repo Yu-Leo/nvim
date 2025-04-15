@@ -13,19 +13,6 @@ return {
     end,
   },
   {
-    "nvzone/volt",
-    enabled = false, -- TODO
-  },
-  {
-    "nvzone/menu",
-    enabled = false, -- TODO
-  },
-  {
-    "nvzone/minty",
-    enabled = false, -- TODO
-    cmd = { "Huefy", "Shades" },
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
     config = function()

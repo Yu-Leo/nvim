@@ -28,18 +28,17 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 require("Yu-Leo.statusline").autocmds()
 
--- TODO: test
--- autocmd("BufWritePre", {
---   pattern = "*",
---   callback = function(args)
---     if vim.g.disable_autoformat then
---       return
---     end
---     require("conform").format {
---       bufnr = args.buf,
---     }
---   end,
--- })
+autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    if vim.g.disable_autoformat then
+      return
+    end
+    require("conform").format {
+      bufnr = args.buf,
+    }
+  end,
+})
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
