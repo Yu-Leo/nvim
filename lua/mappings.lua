@@ -403,7 +403,9 @@ end, { desc = "Go join lines", remap = true })
 
 map("n", "<leader>le", "<cmd>LspRestart<CR>", { desc = "LSP restart", remap = true })
 
-map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Zen mode toggle" })
+map("n", "<leader>os", function()
+  require("simple-boolean-toggle").toggle()
+end, { desc = "Toggle boolean value" })
 
 map("n", "<leader>/", "gcc", { desc = "Comment toggle", remap = true })
 map("v", "<leader>/", "gc", { desc = "Comment toggle", remap = true })

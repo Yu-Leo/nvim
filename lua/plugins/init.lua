@@ -344,4 +344,11 @@ return {
       end,
     },
   },
+  {
+    "polirritmico/simple-boolean-toggle.nvim",
+    event = "BufEnter",
+    opts = {
+      overwrite_builtins = false,
+    },
+  },
 }
