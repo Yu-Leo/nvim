@@ -351,4 +351,9 @@ return {
       overwrite_builtins = false,
     },
   },
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufEnter" },
+    opts = {},
+  },
 }
