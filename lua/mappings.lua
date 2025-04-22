@@ -378,6 +378,8 @@ end, { desc = "TODO", remap = true })
 -- Double leader !>
 
 -- <! Some
+map("n", "mp", "ysiW(%i<BS>, ", { desc = "Add return param", remap = true })
+
 map("n", "mf", function()
   require("Yu-Leo.moves").move_to_func_name()
 end, { desc = "Move to func name (golang)", remap = true })
