@@ -378,6 +378,10 @@ end, { desc = "TODO", remap = true })
 -- Double leader !>
 
 -- <! Some
+map("n", "mf", function()
+  require("Yu-Leo.moves").move_to_func_name()
+end, { desc = "Move to func name (golang)", remap = true })
+
 map("n", "<leader>fl", "<cmd>copen<CR>", { desc = "Open quickfix" })
 
 map({ "n", "v" }, "<leader>r", function()
