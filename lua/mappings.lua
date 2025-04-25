@@ -12,6 +12,7 @@ map("n", "<leader>q", "<cmd>confirm q<CR>", { desc = "Window quit" })
 map("n", "<C-q>", "<cmd>confirm qall<CR>", { desc = "General quit neovim" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear highlights" })
+map("n", "<C-`>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 map("n", "q:", "", { desc = "Disable commands history" })
 
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
