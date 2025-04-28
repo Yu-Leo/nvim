@@ -51,6 +51,7 @@ nvim_tree.setup {
   respect_buf_cwd = true,
   view = {
     width = 30,
+    centralize_selection = true, -- TODO: test
     preserve_window_proportions = true,
   },
   git = {
