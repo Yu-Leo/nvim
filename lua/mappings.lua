@@ -155,6 +155,7 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree toggle windo
 
 map("n", "<Leader>sf", function()
   require("nvim-tree.api").tree.open { find_file = true, update_root = true }
+  vim.cmd.normal "zz"
 end, { desc = "Nvimtree show file" })
 -- NvimTree !>
 
