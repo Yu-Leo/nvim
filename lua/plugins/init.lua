@@ -209,11 +209,6 @@ return {
     opts = require "configs.snacks",
   },
   {
-    "folke/trouble.nvim",
-    opts = {},
-    cmd = "Trouble",
-  },
-  {
     "nvim-neotest/neotest",
     cmd = "Neotest",
     dependencies = {

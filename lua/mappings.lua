@@ -159,10 +159,6 @@ map("n", "<Leader>sf", function()
 end, { desc = "Nvimtree show file" })
 -- NvimTree !>
 
--- <! CdProject
-map("n", "<leader>so", "<cmd>CdProject<CR>", { desc = "Projects open" })
--- CdProject !>
-
 -- <! Flash
 map({ "n", "x", "o" }, "s", function()
   require("flash").jump()
@@ -346,17 +342,6 @@ map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Neotest summary" })
 map("n", "[e", "<cmd>lua require('neotest').jump.prev({status = 'failed'})<CR>", { desc = "Run previous failed test" })
 map("n", "]e", "<cmd>lua require('neotest').jump.next({status = 'failed'})<CR>", { desc = "Run next failed test" })
 -- Neotest !>
-
--- <! Trouble
-map("n", "<leader>tx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble: full diagnostic" })
-map("n", "<leader>tX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Trouble: buffer diagnostic" })
-map(
-  "n",
-  "<leader>lD",
-  "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-  { desc = "Trouble: show lsp definitions / references / ..." }
-)
--- Trouble !>
 
 -- <! Double leader
 map("n", "<leader><leader>c", function()
