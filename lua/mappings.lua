@@ -155,7 +155,7 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree toggle windo
 
 map("n", "<Leader>sf", function()
   require("nvim-tree.api").tree.open { find_file = true, update_root = true }
-  vim.cmd.normal "zz"
+  vim.cmd.normal "zz" -- TODO: sometimes not working
 end, { desc = "Nvimtree show file" })
 -- NvimTree !>
 
@@ -381,6 +381,7 @@ end, { desc = "TODO", remap = true })
 
 -- <! Some
 map("n", "mp", "ysiW(%i<BS>, ", { desc = "Add return param", remap = true })
+map("n", "<leader>ti", "A // TODO: ", { desc = "Add TODO comment", remap = true })
 
 map("n", "mf", function()
   require("Yu-Leo.moves").move_to_func_name()
