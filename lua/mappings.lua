@@ -196,7 +196,14 @@ map("n", "<leader>fo", function()
   require("telescope.builtin").buffers()
 end, { desc = "Telescope find files" })
 
-map("n", "<leader>fh", "<cmd>TodoTelescope<CR>", { desc = "Find todos" })
+map("n", "<leader>fh", function()
+  require("telescope.builtin").grep_string {
+    search = "TODO",
+    additional_args = function(args)
+      return vim.list_extend(args, { "--ignore-case" })
+    end,
+  }
+end, { desc = "Find todos" })
 
 map("n", "<leader>fm", function()
   require("telescope").extensions.git_file_history.git_file_history()

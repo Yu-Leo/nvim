@@ -189,16 +189,6 @@ return {
     opts = require "configs.conform",
   },
   {
-    "folke/todo-comments.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    event = { "BufReadPre" },
-    cmd = { "TodoTelescope" },
-    opts = require "configs.todo-comments",
-  },
-  {
     "kevinhwang91/nvim-bqf",
     event = { "BufEnter" },
     opts = require "configs.nvim-bqf",
@@ -303,7 +293,7 @@ return {
       signs = {
         chars = {
           go_comment = {
-            hl = "@string",
+            hl = "@type.builtin",
           },
         },
       },
