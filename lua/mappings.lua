@@ -371,6 +371,31 @@ end, { desc = "TODO", remap = true })
 -- Double leader !>
 
 -- <! Some
+map("n", "<leader>vo", function()
+  local start_line = vim.fn.line "."
+  local bufnr = vim.api.nvim_get_current_buf()
+  local total_lines = vim.api.nvim_buf_line_count(bufnr)
+
+  local function is_comment(line_nr)
+    local line = vim.fn.getline(line_nr)
+    return line:match "^%s*//" ~= nil
+  end
+
+  local top = start_line
+  while top > 1 and is_comment(top - 1) do
+    top = top - 1
+  end
+
+  local bottom = start_line
+  while bottom < total_lines and is_comment(bottom + 1) do
+    bottom = bottom + 1
+  end
+
+  vim.cmd(tostring(top))
+  vim.cmd "normal! V"
+  vim.cmd(tostring(bottom))
+end, { desc = "Select commented lines around", remap = true })
+
 map("n", "mp", "ysiW(%i<BS>, ", { desc = "Add return param", remap = true })
 map("n", "<leader>ti", "A // TODO: ", { desc = "Add TODO comment", remap = true })
 
