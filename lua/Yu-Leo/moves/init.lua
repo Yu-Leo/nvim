@@ -8,7 +8,7 @@ local function get_func_name_pos()
   }
 
   while cur_node do
-    if cur_node:type() == "function_declaration" then
+    if cur_node:type() == "function_declaration" or cur_node:type() == "method_declaration" then
       local name_nodes = cur_node:field "name"
       if #name_nodes > 0 then
         local name_node = name_nodes[1]
