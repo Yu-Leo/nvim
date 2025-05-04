@@ -181,7 +181,7 @@ map("n", "<leader>F", function()
 end, { desc = "Telescope find files" })
 
 map("n", "<leader>fw", function()
-  require("telescope").extensions.live_grep_args.live_grep_args {
+  require("telescope.builtin").live_grep {
     additional_args = {
       "-F",
       "-S",

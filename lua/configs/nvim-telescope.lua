@@ -1,6 +1,5 @@
 local telescope = require "telescope"
 local actions = require "telescope.actions"
-local lga_actions = require "telescope-live-grep-args.actions"
 
 telescope.setup {
   defaults = {
@@ -41,7 +40,6 @@ telescope.setup {
 
         ["<C-c>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-c>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
       },
       n = {
         ["<LeftMouse>"] = {
@@ -86,6 +84,7 @@ telescope.setup {
       "%.git/",
       "%.idea/",
       "node_modules/",
+      "pkg/",
     },
     prompt_prefix = "   ",
     selection_caret = " ",
@@ -110,15 +109,6 @@ telescope.setup {
     },
   },
   extensions = {
-    live_grep_args = {
-      auto_quoting = true,
-      prompt_title = "Find Words",
-      mappings = {
-        i = {
-          ["<C-i>"] = lga_actions.quote_prompt(),
-        },
-      },
-    },
     ["recent-files"] = {
       prompt_title = "Find Files",
       hidden = true,
@@ -129,5 +119,4 @@ telescope.setup {
 }
 
 telescope.load_extension "recent-files"
-telescope.load_extension "live_grep_args"
 telescope.load_extension "git_file_history"

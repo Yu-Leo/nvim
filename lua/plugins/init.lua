@@ -159,10 +159,6 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      {
-        "nvim-telescope/telescope-live-grep-args.nvim",
-        version = "^1.0.0",
-      },
       "mollerhoj/telescope-recent-files.nvim",
       {
         "isak102/telescope-git-file-history.nvim",
