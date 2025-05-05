@@ -36,6 +36,7 @@ autocmd("BufWritePre", {
     end
     require("conform").format {
       bufnr = args.buf,
+      async = true, -- TODO: test
     }
   end,
 })
