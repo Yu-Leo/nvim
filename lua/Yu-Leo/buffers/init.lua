@@ -9,7 +9,8 @@ M.close_all_hidden = function()
   end
 
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if not open_bufs[buf] then
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = buf })
+    if not open_bufs[buf] and buftype ~= "quickfix" and buftype ~= "nofile" then
       pcall(vim.cmd, "confirm bdelete " .. buf)
     end
   end

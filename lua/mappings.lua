@@ -99,9 +99,7 @@ map("n", "<leader>C", function()
 end, { desc = "Buffer close all" })
 
 map("n", "<leader>bc", function()
-  -- require("Yu-Leo.buffers").close_all_hidden() -- TODO
-  require("nvchad.tabufline").closeBufs_at_direction "left"
-  require("nvchad.tabufline").closeBufs_at_direction "right"
+  require("Yu-Leo.buffers").close_all_hidden()
 end, { desc = "Buffer close all hidden" })
 
 map("n", ">b", function()
