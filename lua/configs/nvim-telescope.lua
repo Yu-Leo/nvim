@@ -85,6 +85,7 @@ telescope.setup {
       "%.idea/",
       "node_modules/",
       "pkg/",
+      "vendor/",
     },
     prompt_prefix = "   ",
     selection_caret = " ",

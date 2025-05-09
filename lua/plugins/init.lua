@@ -337,4 +337,22 @@ return {
     event = { "BufEnter" },
     opts = {},
   },
+  {
+    "leath-dub/snipe.nvim",
+    event = "VeryLazy",
+    opts = {
+      ui = {
+        buffer_format = {
+          "icon",
+          " ",
+          "directory",
+          function()
+            return "/", "SnipeDirname"
+          end,
+          "filename",
+        },
+        position = "center",
+      },
+    },
+  },
 }

@@ -192,14 +192,19 @@ map("n", "<leader>fw", function()
 end, { desc = "Telescope find words" })
 
 map("n", "<leader>fo", function()
-  require("telescope.builtin").buffers()
-end, { desc = "Telescope find files" })
+  require("snipe").open_buffer_menu()
+end, { desc = "Find open buffers" })
+
+-- TODO: remove may be
+-- map("n", "<leader>fo", function()
+--   require("telescope.builtin").buffers()
+-- end, { desc = "Telescope find open buffers" })
 
 map("n", "<leader>fh", function()
   require("telescope.builtin").grep_string {
     search = "TODO",
-    additional_args = function(args)
-      return vim.list_extend(args, { "--ignore-case" })
+    additional_args = function()
+      return { "-i" }
     end,
   }
 end, { desc = "Find todos" })
