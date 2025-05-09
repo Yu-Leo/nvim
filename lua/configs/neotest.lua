@@ -1,8 +1,15 @@
 local neotest = require "neotest"
 
 neotest.setup {
+  diagnostic = {
+    enabled = false,
+  },
   adapters = {
     require "neotest-golang",
+  },
+  output = {
+    enabled = true,
+    open_on_run = false,
   },
   floating = {
     border = "single",
