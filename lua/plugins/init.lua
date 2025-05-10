@@ -337,7 +337,7 @@ return {
     event = { "BufEnter" },
     opts = {},
   },
-  {
+  { -- TODO: test 2025-05-10
     "leath-dub/snipe.nvim",
     event = "VeryLazy",
     opts = {
@@ -353,6 +353,14 @@ return {
         },
         position = "center",
       },
+    },
+  },
+  { -- TODO: test 2025-05-10
+    event = "BufEnter",
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {
+      disable_mouse = false,
     },
   },
 }

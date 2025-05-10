@@ -12,7 +12,7 @@ vim.diagnostic.config {
 
   signs = {
     text = {
-      -- TODO: test
+      -- TODO: test 2025-05-10
       [vim.diagnostic.severity.ERROR] = "",
       [vim.diagnostic.severity.WARN] = "",
       [vim.diagnostic.severity.INFO] = "",

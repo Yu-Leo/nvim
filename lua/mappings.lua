@@ -154,7 +154,7 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree toggle windo
 
 map("n", "<Leader>sf", function()
   require("nvim-tree.api").tree.open { find_file = true, update_root = true }
-  vim.cmd.normal "zz" -- TODO: sometimes not working
+  vim.cmd.normal "zz" -- TODO: sometimes not working 2025-05-10
 end, { desc = "Nvimtree show file" })
 -- NvimTree !>
 
@@ -195,7 +195,7 @@ map("n", "<leader>fo", function()
   require("snipe").open_buffer_menu()
 end, { desc = "Find open buffers" })
 
--- TODO: remove may be
+-- TODO: remove may be - 2025-05-10
 -- map("n", "<leader>fo", function()
 --   require("telescope.builtin").buffers()
 -- end, { desc = "Telescope find open buffers" })

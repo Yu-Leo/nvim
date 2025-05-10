@@ -20,6 +20,7 @@
   "go.nvim": { "branch": "master", "commit": "fbceaf55e18e9e473f289df008d6b508a479fbf8" },
   "gosigns.nvim": { "branch": "main", "commit": "39d0a1f2ebd19aed1b862b537d6e81f9eba5aeef" },
   "guihua.lua": { "branch": "master", "commit": "0cc9631914ffcbe3e474e809c610d12a75b660cf" },
+  "hardtime.nvim": { "branch": "main", "commit": "9aaec65de041bddfc4c0af66919030d2950bcea8" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "1255518cb067e038a4755f5cb3e980f79b6ab89c" },

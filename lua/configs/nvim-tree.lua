@@ -26,7 +26,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set("n", "gc", api.fs.copy.absolute_path, opts "Copy Absolute Path")
   vim.keymap.set("n", "C", api.fs.copy.relative_path, opts "Copy Relative Path")
 
-  -- TODO: MAYBE DELETE
+  -- TODO: MAYBE DELETE 2025-05-10
   vim.keymap.set("n", "K", api.node.show_info_popup, opts "Info")
   vim.keymap.set("n", "<C-v>", api.node.open.vertical, opts "Open: Vertical Split")
 
