@@ -58,17 +58,6 @@ require("nvim-treesitter.configs").setup {
         ["if"] = "@function.inner",
 
         ["at"] = "@comment.outer",
-
-        -- TODO: 2025-05-18 maybe remove
-        ["ii"] = "@conditional.inner",
-        ["ai"] = "@conditional.outer",
-
-        ["il"] = "@loop.inner",
-        ["al"] = "@loop.outer",
-
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-
         ["am"] = "@parameter.type",
       },
     },

@@ -138,6 +138,8 @@ M.polish_hl = {
     NvimTreePathTeal = { bg = mix_col("#4495aa", M.base_30.darker_black, 70), fg = M.base_16.base05 },
     NvimTreePathGreen = { bg = mix_col("#60aa39", M.base_30.darker_black, 70), fg = M.base_16.base05 },
     NvimTreePathDarkPurple = { bg = mix_col(M.base_30.dark_purple, M.base_30.darker_black, 70), fg = M.base_16.base05 },
+
+    OnYank = { bg = M.base_16.base05, fg = M.base_30.black },
   },
 
   nvimtree = {

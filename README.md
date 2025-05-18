@@ -72,7 +72,7 @@ All plugins and extensions will be installed and configured **automatically**.
 
 ### ⚡️ Requirements
 
-- Neovim >= 0.10.0
+- Neovim >= 0.11.0
 - a [patched font](https://www.nerdfonts.com/) for the icons, or change them to simple ASCII characters
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - git
@@ -121,5 +121,5 @@ rm -rf ~/.local/share/nvim
     - [`Yu-Leo/gosigns.nvim`](https://github.com/Yu-Leo/gosigns.nvim) - visualizing some Go hints
     - [`Yu-Leo/cmp-go-pkgs`](https://github.com/Yu-Leo/cmp-go-pkgs) - nvim-cmp source providing the names of Go packages to import
 - Check out **my other dotfiles**: [`Yu-Leo/dotfiles`](https://github.com/Yu-Leo/dotfiles)
-- I’ve spent over **200 hours** learning and practicing in Vim, creating this configuration and my own plugins. I will be glad if you find something useful in them for yourself.
+- I’ve spent over **210 hours** learning and practicing in Vim, creating this configuration and my own plugins. I will be glad if you find something useful in them for yourself.
 - License: [MIT](./LICENSE). Author: [@Yu-Leo](https://github.com/Yu-Leo)

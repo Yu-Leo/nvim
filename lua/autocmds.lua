@@ -40,10 +40,7 @@ autocmd("BufWritePre", {
   end,
 })
 
-local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
 autocmd({ "BufWritePost", "InsertLeave" }, {
-  group = lint_augroup,
   callback = function()
     require("lint").try_lint()
   end,
@@ -62,13 +59,6 @@ autocmd({ "LspAttach" }, {
   end,
 })
 
-autocmd({ "LspAttach" }, {
-  pattern = { "*.go" },
-  callback = function(args)
-    require("cmp_go_pkgs").init_items(args)
-  end,
-})
-
 -- For refresh nvim-tree after switching form the diffview tab
 autocmd({ "TabEnter" }, {
   callback = function(_)
@@ -80,5 +70,23 @@ autocmd("FileType", {
   pattern = "qf",
   callback = function()
     vim.wo.statusline = "%#StModeNormal#█%#StName# 󰈚 Quickfix List %#StBase#%=%#StCursor# %l:%c "
+  end,
+})
+
+autocmd("User", {
+  pattern = "PersistenceSavePre",
+  callback = function()
+    require("nvim-tree.api").tree.close()
+    require("neotest").summary.close()
+  end,
+})
+
+autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank {
+      higroup = "OnYank",
+      timeout = 200,
+    }
   end,
 })
