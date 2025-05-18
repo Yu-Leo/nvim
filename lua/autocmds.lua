@@ -82,3 +82,11 @@ autocmd("FileType", {
     vim.wo.statusline = "%#StModeNormal#█%#StName# 󰈚 Quickfix List %#StBase#%=%#StCursor# %l:%c "
   end,
 })
+
+autocmd("User", {
+  pattern = "PersistenceSavePre",
+  callback = function()
+    require("nvim-tree.api").tree.close()
+    require("neotest").summary.close()
+  end,
+})
