@@ -1,6 +1,5 @@
 local telescope = require "telescope"
 local actions = require "telescope.actions"
-local lga_actions = require "telescope-live-grep-args.actions"
 
 telescope.setup {
   defaults = {
@@ -41,11 +40,6 @@ telescope.setup {
 
         ["<C-c>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-c>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-        ["<C-h>"] = function(opts)
-          require("plenary.reload").reload_module "telescope"
-          telescope.extensions.hop.hop(opts)
-        end,
       },
       n = {
         ["<LeftMouse>"] = {
@@ -83,11 +77,6 @@ telescope.setup {
         ["<M-h>"] = actions.preview_scrolling_left,
         ["<M-l>"] = actions.preview_scrolling_right,
 
-        ["<C-h>"] = function(opts)
-          require("plenary.reload").reload_module "telescope"
-          telescope.extensions.hop.hop(opts)
-        end,
-
         ["?"] = actions.which_key,
       },
     },
@@ -95,6 +84,8 @@ telescope.setup {
       "%.git/",
       "%.idea/",
       "node_modules/",
+      "pkg/",
+      "vendor/",
     },
     prompt_prefix = "   ",
     selection_caret = " ",
@@ -119,28 +110,14 @@ telescope.setup {
     },
   },
   extensions = {
-    live_grep_args = {
-      auto_quoting = true,
-      prompt_title = "Find Words",
-      mappings = {
-        i = {
-          ["<C-i>"] = lga_actions.quote_prompt(),
-        },
-      },
-    },
     ["recent-files"] = {
       prompt_title = "Find Files",
       hidden = true,
       no_ignore = true,
       no_ignore_parent = true,
     },
-    hop = {
-      sign_hl = "MoreMsg",
-    },
   },
 }
 
 telescope.load_extension "recent-files"
-telescope.load_extension "live_grep_args"
-telescope.load_extension "hop"
 telescope.load_extension "git_file_history"

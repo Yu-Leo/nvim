@@ -5,13 +5,17 @@ local util = require "lspconfig/util"
 local brief_exists, brief = pcall(require, "private.brief")
 
 vim.diagnostic.config {
-  virtual_text = { prefix = "" },
+  virtual_lines = false,
+  virtual_text = {
+    prefix = "",
+  },
+
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = "󰅙",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "󰋼",
-      [vim.diagnostic.severity.HINT] = "󰌵",
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
     },
   },
   underline = true,

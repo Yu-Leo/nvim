@@ -13,19 +13,6 @@ return {
     end,
   },
   {
-    "nvzone/volt",
-    enabled = false, -- TODO
-  },
-  {
-    "nvzone/menu",
-    enabled = false, -- TODO
-  },
-  {
-    "nvzone/minty",
-    enabled = false, -- TODO
-    cmd = { "Huefy", "Shades" },
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
     config = function()
@@ -111,13 +98,6 @@ return {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
-      {
-        -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        config = function()
-          require "configs.luasnip"
-        end,
-      },
       -- autopairing of (){}[] etc
       {
         "windwp/nvim-autopairs",
@@ -127,7 +107,6 @@ return {
       },
       -- cmp sources plugins
       {
-        "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
@@ -172,12 +151,7 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      {
-        "nvim-telescope/telescope-live-grep-args.nvim",
-        version = "^1.0.0",
-      },
       "mollerhoj/telescope-recent-files.nvim",
-      "nvim-telescope/telescope-hop.nvim",
       {
         "isak102/telescope-git-file-history.nvim",
         dependencies = {
@@ -203,16 +177,6 @@ return {
     opts = require "configs.conform",
   },
   {
-    "folke/todo-comments.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    event = { "BufReadPre" },
-    cmd = { "TodoTelescope" },
-    opts = require "configs.todo-comments",
-  },
-  {
     "kevinhwang91/nvim-bqf",
     event = { "BufEnter" },
     opts = require "configs.nvim-bqf",
@@ -221,11 +185,6 @@ return {
     "folke/snacks.nvim",
     event = { "BufEnter" },
     opts = require "configs.snacks",
-  },
-  {
-    "folke/trouble.nvim",
-    opts = {},
-    cmd = "Trouble",
   },
   {
     "nvim-neotest/neotest",
@@ -257,11 +216,7 @@ return {
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
-    opts = {
-      tag_options = "",
-      comment_placeholder = "",
-      diagnostic = false,
-    },
+    opts = require "configs.go",
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
@@ -318,15 +273,7 @@ return {
     "Yu-Leo/gosigns.nvim",
     ft = "go",
     cmd = { "GosignsEnable", "GosignsDisable", "GosignsToggle" },
-    opts = {
-      signs = {
-        chars = {
-          go_comment = {
-            hl = "@string",
-          },
-        },
-      },
-    },
+    opts = require "configs.gosigns",
   },
   {
     "kevinhwang91/nvim-ufo",
@@ -334,20 +281,8 @@ return {
       "kevinhwang91/promise-async",
       {
         "luukvbaal/statuscol.nvim",
-        opts = function()
-          local builtin = require "statuscol.builtin"
-          return {
-            setopt = true,
-            segments = {
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-              { text = { "%s" }, click = "v:lua.ScSa" },
-              {
-                text = { builtin.lnumfunc, " " },
-                condition = { true, builtin.not_empty },
-                click = "v:lua.ScLa",
-              },
-            },
-          }
+        config = function()
+          require "configs/statuscol"
         end,
       },
     },
@@ -357,5 +292,28 @@ return {
         return { "treesitter", "indent" }
       end,
     },
+  },
+  {
+    "polirritmico/simple-boolean-toggle.nvim",
+    event = "BufEnter",
+    opts = {
+      overwrite_builtins = false,
+    },
+  },
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufEnter" },
+    opts = {},
+  },
+  {
+    "leath-dub/snipe.nvim",
+    event = "VeryLazy",
+    opts = require "configs.snipe",
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    event = "BufEnter",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = require "configs.hardtime",
   },
 }
