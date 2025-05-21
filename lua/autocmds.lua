@@ -40,10 +40,7 @@ autocmd("BufWritePre", {
   end,
 })
 
-local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
 autocmd({ "BufWritePost", "InsertLeave" }, {
-  group = lint_augroup,
   callback = function()
     require("lint").try_lint()
   end,
@@ -62,10 +59,13 @@ autocmd({ "LspAttach" }, {
   end,
 })
 
+-- TODO 2025-05-22: remove after miration to blink
 autocmd({ "LspAttach" }, {
   pattern = { "*.go" },
   callback = function(args)
-    require("cmp_go_pkgs").init_items(args)
+    pcall(function()
+      require("cmp_go_pkgs").init_items(args)
+    end)
   end,
 })
 

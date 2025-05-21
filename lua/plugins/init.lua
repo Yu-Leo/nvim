@@ -96,6 +96,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    enabled = false, -- TODO: 2025-05-21 replace to blink
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       -- autopairing of (){}[] etc
@@ -116,6 +117,19 @@ return {
     config = function()
       require "configs.nvim-cmp"
     end,
+  },
+  {
+    "saghen/blink.cmp",
+    dependencies = {
+      {
+        "windwp/nvim-autopairs",
+        opts = {},
+      },
+    },
+    version = "1.*",
+    enabled = true, -- TODO: 2025-05-21 replace to blink
+    lazy = false,
+    opts = require "configs.blink",
   },
   {
     "williamboman/mason.nvim",

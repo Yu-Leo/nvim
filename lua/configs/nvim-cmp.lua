@@ -27,31 +27,34 @@ end
 
 local function cmdline_mappings()
   return {
-    ["<Tab>"] = { c = next_item_with_fallback },
-    ["<S-Tab>"] = { c = prev_item_with_fallback },
     ["<C-i>"] = { c = cmp.mapping.complete() },
+    ["<C-e>"] = { c = cmp.mapping.close() },
+    ["<Esc>"] = { c = abort_with_fallback },
+    ["<C-y>"] = { c = cmp.mapping.confirm { select = false } },
+
     ["<C-j>"] = { c = next_item_with_fallback },
     ["<C-k>"] = { c = prev_item_with_fallback },
-    ["<Esc>"] = { c = abort_with_fallback },
-    ["<C-e>"] = { c = cmp.mapping.close() },
-    ["<C-y>"] = { c = cmp.mapping.confirm { select = false } },
+    ["<Tab>"] = { c = next_item_with_fallback },
+    ["<S-Tab>"] = { c = prev_item_with_fallback },
   }
 end
 
 local function common_mappings()
   return {
     ["<C-i>"] = cmp.mapping.complete(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-d>"] = cmp.mapping.open_docs(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<esc>"] = cmp.mapping(abort_with_fallback, { "i", "s" }),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
+
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<Tab>"] = cmp.mapping(next_item_with_fallback, { "i", "s" }),
     ["<S-Tab>"] = cmp.mapping(prev_item_with_fallback, { "i", "s" }),
+
+    ["<C-d>"] = cmp.mapping.open_docs(),
   }
 end
 
