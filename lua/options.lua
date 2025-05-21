@@ -30,6 +30,7 @@ o.mouse = "a"
 
 -- Numbers
 o.number = true
+o.relativenumber = true -- TODO: 2025-05-21 test for hardtime
 o.numberwidth = 2
 o.ruler = false
 
