@@ -83,13 +83,6 @@ return {
     event = "BufEnter",
   },
   {
-    "neovim/nvim-lspconfig",
-    event = "BufReadPre",
-    config = function()
-      require "configs.nvim-lspconfig"
-    end,
-  },
-  {
     "tenxsoydev/tabs-vs-spaces.nvim",
     config = true,
     event = "BufEnter",
@@ -132,7 +125,7 @@ return {
     opts = require "configs.blink",
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
     opts = require "configs.mason",
   },
@@ -227,7 +220,6 @@ return {
     "ray-x/go.nvim",
     dependencies = {
       "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
     opts = require "configs.go",
