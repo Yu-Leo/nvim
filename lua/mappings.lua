@@ -11,7 +11,6 @@ map("n", "<leader>w", "<Cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>confirm q<CR>", { desc = "Window quit" })
 map("n", "<C-q>", "<cmd>confirm qall<CR>", { desc = "General quit neovim" })
 
-map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear highlights" })
 map("n", "<C-`>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 map("n", "q:", "", { desc = "Disable commands history" })
 
@@ -132,6 +131,7 @@ map("n", "<C-A-l>", "<Cmd>vertical resize +2<CR>", { desc = "Resize window right
 -- Close all floating windows
 -- TODO: 2025-05-22: test
 map("n", "<Esc>", function()
+  vim.cmd "noh"
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local config = vim.api.nvim_win_get_config(win)
     if config.relative ~= "" then
