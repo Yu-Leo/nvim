@@ -43,6 +43,10 @@ return {
 
       ["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
     },
-    completion = { menu = { auto_show = true } },
+    completion = {
+      menu = {
+        auto_show = true,
+      },
+    },
   },
 }

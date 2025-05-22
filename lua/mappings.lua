@@ -128,6 +128,17 @@ map("n", "<C-A-j>", "<Cmd>resize -2<CR>", { desc = "Resize window up" })
 map("n", "<C-A-k>", "<Cmd>resize +2<CR>", { desc = "Resize window down" })
 map("n", "<C-A-h>", "<Cmd>vertical resize -2<CR>", { desc = "Resize window left" })
 map("n", "<C-A-l>", "<Cmd>vertical resize +2<CR>", { desc = "Resize window right" })
+
+-- Close all floating windows
+-- TODO: 2025-05-22: test
+map("n", "<Esc>", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" then
+      vim.api.nvim_win_close(win, true)
+    end
+  end
+end, { noremap = true, silent = true })
 -- Windows !>
 
 -- <! Tabs
@@ -448,4 +459,6 @@ map("n", "<leader>V", function()
   end
   vim.cmd.redrawstatus()
 end, { desc = "Toggle autoformat on save", remap = true })
+
+map("n", "<leader>L", ":Lazy<CR>", { desc = "Open Lazy" })
 -- Some !>
