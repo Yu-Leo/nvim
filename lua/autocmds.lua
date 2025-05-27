@@ -90,3 +90,13 @@ autocmd("User", {
     require("neotest").summary.close()
   end,
 })
+
+autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank {
+      higroup = "OnYank",
+      timeout = 200,
+    }
+  end,
+})
