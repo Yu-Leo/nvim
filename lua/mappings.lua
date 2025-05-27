@@ -76,7 +76,7 @@ end
 -- <! Buffers
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 
-map("n", "<C-m>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
+map("n", "<C-,>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
 
 map("n", "]b", function()
   require("nvchad.tabufline").next()
@@ -435,7 +435,7 @@ map("n", "<leader>lT", function()
   require("go.lsp").codeaction { cmd = "apply_fix", only = "refactor.rewrite", filters = { "join_lines" } }
 end, { desc = "Go join lines", remap = true })
 
-map("n", "<leader>le", "<cmd>LspRestart<CR>", { desc = "LSP restart", remap = true })
+map("n", "<leader>le", "<cmd>e<CR>", { desc = "LSP restart", remap = true })
 
 map("n", "<leader>os", function()
   require("simple-boolean-toggle").toggle()

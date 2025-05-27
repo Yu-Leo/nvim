@@ -259,6 +259,7 @@ return {
   },
   {
     "lewis6991/satellite.nvim",
+    enabled = false, -- TODO: 2025-05-27: test
     event = "BufEnter",
     opts = require "configs.satellite",
   },
