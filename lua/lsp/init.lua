@@ -28,6 +28,19 @@ vim.lsp.config("gopls", {
   root_markers = { "go.work", "go.mod", ".git" },
   on_init = utils.on_init,
   on_attach = utils.on_attach,
+  settings = {
+    gopls = {
+      completeUnimported = true,
+      codelenses = {
+        generate = false,
+        gc_details = false,
+        test = false,
+        tidy = false,
+        regenerate_cgo = false,
+        vendor = false,
+      },
+    },
+  },
 })
 
 vim.lsp.config("lua_ls", {
