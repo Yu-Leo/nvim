@@ -323,4 +323,9 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = require "configs.hardtime",
   },
+  { -- TODO: 2025-05-28 TEST
+    "kana/vim-textobj-entire",
+    dependencies = { "kana/vim-textobj-user" },
+    event = "VeryLazy", -- или выберите подходящее событие
+  },
 }
