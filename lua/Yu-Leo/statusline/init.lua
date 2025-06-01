@@ -1,15 +1,14 @@
-local nv_utils = require "nvchad.stl.utils"
 local utils = require "Yu-Leo.statusline.utils"
 
 local M = {}
 
 -- <! Render blocks
 local render_block_mode = function(_)
-  if not nv_utils.is_activewin() then
+  if not utils.is_activewin() then
     return "", 0
   end
 
-  local modes = nv_utils.modes
+  local modes = utils.modes
   local m = vim.api.nvim_get_mode().mode
   local mode = "%#StMode" .. modes[m][2] .. "#" .. "█" .. "%#StBase#"
 
@@ -25,23 +24,6 @@ local get_lsp_icon = function(state)
     end
   end
 
-  return ""
-end
-
-local get_lint_icon = function(_)
-  if vim.b.lint_running then
-    if vim.b.custom_lint_config then
-      return " ⛊"
-    end
-    return " ⛉"
-  end
-  return ""
-end
-
-local get_autoformat_icon = function(_)
-  if not vim.g.disable_autoformat then
-    return " ⊜"
-  end
   return ""
 end
 
@@ -90,15 +72,7 @@ local get_content_block_name = function(state)
       local ft_icon = devicons.get_icon(state.name)
       icon = (ft_icon ~= nil and ft_icon) or icon
     end
-    return " "
-      .. icon
-      .. " "
-      .. state.name
-      .. get_lsp_icon(state)
-      .. get_lint_icon(state)
-      .. get_autoformat_icon(state)
-      .. get_ts_icon(state)
-      .. " "
+    return " " .. icon .. " " .. state.name .. get_lsp_icon(state) .. get_ts_icon(state) .. " "
   end
 
   return ""
@@ -116,6 +90,10 @@ local render_block_git_head = function(state)
       return "", 0
     end
     local head = vim.b[state.bufnr].gitsigns_status_dict.head
+    if head == "" then
+      return "", 0
+    end
+
     local content = "  " .. head .. " "
     return "%#StGitHead#" .. content .. "%#StBase#", vim.fn.strdisplaywidth(content)
   end
@@ -128,8 +106,8 @@ local render_block_git_head = function(state)
     or type == "DIFFVIEWFILEPANEL"
     or type == "CURLOUTPUT"
   then
-    local head = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
-    if head:match "fatal" then
+    local head = vim.fn.system("git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD"):gsub("\n", "")
+    if head:match "fatal" or head == "" then
       return "", 0
     end
     local content = "  " .. head .. " "
@@ -140,6 +118,9 @@ local render_block_git_head = function(state)
     local hash, _ = string.match(state.path, ".git//([0-9a-f]+)(/.*)")
     if hash then
       local head = hash:sub(1, 7)
+      if head == "" then
+        return "", 0
+      end
       local content = "  " .. head .. " "
       return "%#StGitHead#" .. content .. "%#StBase#", vim.fn.strdisplaywidth(content)
     end
@@ -454,7 +435,7 @@ M.state = {
 }
 
 M.generate = function()
-  M.state.bufnr = nv_utils.stbufnr()
+  M.state.bufnr = utils.stbufnr()
   M.state.path = vim.api.nvim_buf_get_name(M.state.bufnr)
   M.state.name = M.state.path:match "([^/\\]+)[/\\]*$"
   M.state.cwd = vim.fn.getcwd()

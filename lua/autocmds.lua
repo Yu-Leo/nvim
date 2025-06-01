@@ -28,6 +28,8 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 require("Yu-Leo.statusline").autocmds()
 
+require "Yu-Leo.tabufline.autocmds"
+
 autocmd("BufWritePre", {
   pattern = "*",
   callback = function(args)
@@ -40,22 +42,9 @@ autocmd("BufWritePre", {
   end,
 })
 
-autocmd({ "BufWritePost", "InsertLeave" }, {
-  callback = function()
-    require("lint").try_lint()
-  end,
-})
-
-autocmd({ "LspAttach", "BufWritePost" }, {
-  callback = function(_)
-    vim.lsp.codelens.refresh { bufnr = 0 }
-  end,
-})
-
--- Use golangci-lint config from cwd if it exists
 autocmd({ "LspAttach" }, {
   callback = function(_)
-    require("Yu-Leo.common").check_custom_linters()
+    vim.lsp.codelens.refresh { bufnr = 0 }
   end,
 })
 
@@ -73,14 +62,6 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("User", {
-  pattern = "PersistenceSavePre",
-  callback = function()
-    require("nvim-tree.api").tree.close()
-    require("neotest").summary.close()
-  end,
-})
-
 autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
@@ -88,5 +69,12 @@ autocmd("TextYankPost", {
       higroup = "OnYank",
       timeout = 200,
     }
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    vim.cmd "startinsert"
   end,
 })

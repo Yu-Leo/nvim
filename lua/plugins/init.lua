@@ -1,34 +1,18 @@
 return {
   {
-    "NvChad/NvChad",
-    branch = "v2.5",
+    "nvchad/base46",
+    init = function()
+      require("base46").load_all_highlights()
+    end,
   },
   {
     "nvim-lua/plenary.nvim",
-  },
-  {
-    "nvchad/ui",
-    config = function()
-      require "nvchad"
-    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
     config = function()
       require "configs.ident-blankline"
-    end,
-  },
-  {
-    "folke/which-key.nvim",
-    keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
-    cmd = "WhichKey",
-    opts = {},
-  },
-  {
-    "nvchad/base46",
-    init = function()
-      require("base46").load_all_highlights()
     end,
   },
   {
@@ -42,7 +26,7 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     opts = function()
-      return { override = require "nvchad.icons.devicons" }
+      return { override = require "Yu-Leo.devicons" }
     end,
   },
   {
@@ -58,10 +42,13 @@ return {
   {
     "okuuva/auto-save.nvim",
     version = "^1.0.0",
-    cmd = "ASToggle",
     event = { "InsertLeave", "TextChanged" },
     opts = {
-      debounce_delay = 500,
+      trigger_events = {
+        immediate_save = { "BufLeave", "FocusLost", "QuitPre", "VimSuspend" },
+        defer_save = {},
+      },
+      debounce_delay = 2000,
     },
   },
   {
@@ -74,17 +61,7 @@ return {
     cmd = { "Git", "G" },
   },
   {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = {},
-  },
-  {
     "karb94/neoscroll.nvim",
-    event = "BufEnter",
-  },
-  {
-    "tenxsoydev/tabs-vs-spaces.nvim",
-    config = true,
     event = "BufEnter",
   },
   {
@@ -203,22 +180,7 @@ return {
     build = ':lua require("go.install").update_all_sync()',
   },
   {
-    "mfussenegger/nvim-lint",
-    event = {
-      "BufReadPre",
-      "BufNewFile",
-    },
-    config = function()
-      require "configs.nvim-lint"
-    end,
-  },
-  {
     "MunifTanjim/nui.nvim",
-  },
-  {
-    "trevorhauter/gitportal.nvim",
-    cmd = "GitPortal",
-    opts = {},
   },
   {
     "echasnovski/mini.move",
@@ -242,7 +204,9 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    opts = {},
+    opts = {
+      default_flags = { "-i" },
+    },
     ft = { "curl" },
   },
   {
@@ -250,24 +214,6 @@ return {
     ft = "go",
     cmd = { "GosignsEnable", "GosignsDisable", "GosignsToggle" },
     opts = require "configs.gosigns",
-  },
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          require "configs/statuscol"
-        end,
-      },
-    },
-    event = "BufEnter",
-    opts = {
-      provider_selector = function(bufnr, filetype, buftype)
-        return { "treesitter", "indent" }
-      end,
-    },
   },
   {
     "polirritmico/simple-boolean-toggle.nvim",
@@ -287,14 +233,23 @@ return {
     opts = require "configs.snipe",
   },
   {
-    "m4xshen/hardtime.nvim",
-    event = "BufEnter",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = require "configs.hardtime",
-  },
-  { -- TODO: 2025-05-28 TEST
-    "kana/vim-textobj-entire",
+    "kana/vim-textobj-line",
     dependencies = { "kana/vim-textobj-user" },
     event = "VeryLazy",
+  },
+  {
+    "Julian/vim-textobj-variable-segment",
+    dependencies = { "kana/vim-textobj-user" },
+    event = "VeryLazy",
+  },
+  {
+    "linrongbin16/gitlinker.nvim",
+    event = "VeryLazy",
+    opts = require "configs.gitlinker",
+  },
+  {
+    "mistweaverco/kulala.nvim",
+    ft = { "http", "rest" },
+    opts = require "configs.kulala",
   },
 }
