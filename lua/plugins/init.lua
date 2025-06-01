@@ -83,42 +83,24 @@ return {
     event = "BufEnter",
   },
   {
-    "neovim/nvim-lspconfig",
-    event = "BufReadPre",
-    config = function()
-      require "configs.nvim-lspconfig"
-    end,
-  },
-  {
     "tenxsoydev/tabs-vs-spaces.nvim",
     config = true,
     event = "BufEnter",
   },
   {
-    "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
+    "saghen/blink.cmp",
     dependencies = {
-      -- autopairing of (){}[] etc
       {
         "windwp/nvim-autopairs",
-        config = function()
-          require "configs.nvim-autopairs"
-        end,
-      },
-      -- cmp sources plugins
-      {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "Yu-Leo/cmp-go-pkgs",
+        opts = {},
       },
     },
-    config = function()
-      require "configs.nvim-cmp"
-    end,
+    version = "1.*",
+    lazy = false,
+    opts = require "configs.blink",
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
     opts = require "configs.mason",
   },
@@ -213,7 +195,6 @@ return {
     "ray-x/go.nvim",
     dependencies = {
       "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
     opts = require "configs.go",
@@ -250,11 +231,6 @@ return {
     version = "*",
     cmd = "ToggleTerm",
     opts = require "configs.toggleterm",
-  },
-  {
-    "lewis6991/satellite.nvim",
-    event = "BufEnter",
-    opts = require "configs.satellite",
   },
   {
     "Yu-Leo/blame-column.nvim",
@@ -315,5 +291,10 @@ return {
     event = "BufEnter",
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = require "configs.hardtime",
+  },
+  { -- TODO: 2025-05-28 TEST
+    "kana/vim-textobj-entire",
+    dependencies = { "kana/vim-textobj-user" },
+    event = "VeryLazy",
   },
 }

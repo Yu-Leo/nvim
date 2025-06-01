@@ -11,7 +11,6 @@ map("n", "<leader>w", "<Cmd>w<CR>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>confirm q<CR>", { desc = "Window quit" })
 map("n", "<C-q>", "<cmd>confirm qall<CR>", { desc = "General quit neovim" })
 
-map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear highlights" })
 map("n", "<C-`>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 map("n", "q:", "", { desc = "Disable commands history" })
 
@@ -77,7 +76,7 @@ end
 -- <! Buffers
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 
-map("n", "<C-m>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
+map("n", "<C-,>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
 
 map("n", "]b", function()
   require("nvchad.tabufline").next()
@@ -128,6 +127,17 @@ map("n", "<C-A-j>", "<Cmd>resize -2<CR>", { desc = "Resize window up" })
 map("n", "<C-A-k>", "<Cmd>resize +2<CR>", { desc = "Resize window down" })
 map("n", "<C-A-h>", "<Cmd>vertical resize -2<CR>", { desc = "Resize window left" })
 map("n", "<C-A-l>", "<Cmd>vertical resize +2<CR>", { desc = "Resize window right" })
+
+-- Close all floating windows
+map("n", "<Esc>", function()
+  vim.cmd "noh"
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" then
+      vim.api.nvim_win_close(win, true)
+    end
+  end
+end, { noremap = true, silent = true })
 -- Windows !>
 
 -- <! Tabs
@@ -424,7 +434,7 @@ map("n", "<leader>lT", function()
   require("go.lsp").codeaction { cmd = "apply_fix", only = "refactor.rewrite", filters = { "join_lines" } }
 end, { desc = "Go join lines", remap = true })
 
-map("n", "<leader>le", "<cmd>LspRestart<CR>", { desc = "LSP restart", remap = true })
+map("n", "<leader>le", "<cmd>e<CR>", { desc = "LSP restart", remap = true })
 
 map("n", "<leader>os", function()
   require("simple-boolean-toggle").toggle()
@@ -448,4 +458,6 @@ map("n", "<leader>V", function()
   end
   vim.cmd.redrawstatus()
 end, { desc = "Toggle autoformat on save", remap = true })
+
+map("n", "<leader>L", ":Lazy<CR>", { desc = "Open Lazy" })
 -- Some !>
