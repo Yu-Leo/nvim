@@ -29,6 +29,7 @@ local ensure_installed = {
   "json5",
   "bash",
   "http",
+  "rust",
 }
 
 if brief_exists then

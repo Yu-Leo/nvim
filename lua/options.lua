@@ -30,7 +30,7 @@ o.mouse = "a"
 
 -- Numbers
 o.number = true
-o.relativenumber = true
+o.relativenumber = false
 o.numberwidth = 2
 o.ruler = false
 

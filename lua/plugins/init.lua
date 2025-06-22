@@ -287,12 +287,6 @@ return {
     opts = require "configs.snipe",
   },
   {
-    "m4xshen/hardtime.nvim",
-    event = "BufEnter",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = require "configs.hardtime",
-  },
-  { -- TODO: 2025-05-28 TEST
     "kana/vim-textobj-entire",
     dependencies = { "kana/vim-textobj-user" },
     event = "VeryLazy",

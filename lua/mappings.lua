@@ -406,6 +406,7 @@ end, { desc = "Select commented lines around", remap = true })
 
 map("n", "mp", "ysiW(%i<BS>, ", { desc = "Add return param", remap = true })
 map("n", "<leader>ti", "A // TODO: ", { desc = "Add TODO comment", remap = true })
+map("n", "<leader>;", "mqA;<Esc>`q", { desc = "Add ; to end of line", remap = true })
 
 map("n", "mf", function()
   require("Yu-Leo.moves").move_to_func_name()

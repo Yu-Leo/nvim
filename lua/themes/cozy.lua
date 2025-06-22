@@ -264,6 +264,7 @@ M.polish_hl = {
 
     ["@keyword.import"] = { fg = M.base_16.base09 },
     ["@keyword.import.go"] = { fg = M.base_16.base09 },
+    ["@keyword.import.rust"] = { fg = M.base_16.base09 },
     ["@keyword.import.python"] = { fg = M.base_16.base09 },
     ["@keyword.import.tsx"] = { fg = M.base_16.base09 },
     ["@keyword.import.typescript"] = { fg = M.base_16.base09 },
