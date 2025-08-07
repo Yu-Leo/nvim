@@ -404,7 +404,8 @@ map("n", "<leader>vo", function()
   vim.cmd(tostring(bottom))
 end, { desc = "Select commented lines around", remap = true })
 
-map("n", "mp", "ysiW(%i<BS>, ", { desc = "Add return param", remap = true })
+map("n", "mp", "ysiW(lxh%Xi, ", { desc = "Add return param (Go) after", remap = true })
+map("n", "mP", "ysiW(%X%a", { desc = "Add return param (Go) before", remap = true })
 map("n", "<leader>ti", "A // TODO: ", { desc = "Add TODO comment", remap = true })
 map("n", "<leader>;", "mqA;<Esc>`q", { desc = "Add ; to end of line", remap = true })
 

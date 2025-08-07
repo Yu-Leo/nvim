@@ -105,7 +105,7 @@ rm -rf ~/.local/share/nvim
 │   ├── options.lua  # File with neovim options
 │   ├── plugins/init.lua  # File with a list of plugins
 │   ├── private  # Directory with the private part of the config. Added to .gitignore
-│   ├── themes/yuth0.lua  # My color theme
+│   ├── themes/savannah.lua  # My color theme
 │   └── usercmds.lua  # File with my custom commands
 ├── queries
 └── spell
