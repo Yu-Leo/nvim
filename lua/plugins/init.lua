@@ -286,24 +286,13 @@ return {
     event = "VeryLazy",
     opts = require "configs.snipe",
   },
-
-  { -- TODO: 2025-08-07
+  {
     "kana/vim-textobj-line",
     dependencies = { "kana/vim-textobj-user" },
     event = "VeryLazy",
   },
-  { -- TODO: 2025-08-07
+  {
     "Julian/vim-textobj-variable-segment",
-    dependencies = { "kana/vim-textobj-user" },
-    event = "VeryLazy",
-  },
-  { -- TODO: 2025-08-07
-    "glts/vim-textobj-comment",
-    dependencies = { "kana/vim-textobj-user" },
-    event = "VeryLazy",
-  },
-  { -- TODO: 2025-08-07
-    "sgur/vim-textobj-parameter",
     dependencies = { "kana/vim-textobj-user" },
     event = "VeryLazy",
   },

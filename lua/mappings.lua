@@ -76,7 +76,7 @@ end
 -- <! Buffers
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 
-map("n", "<C-,>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
+map("n", "<C-;>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
 
 map("n", "]b", function()
   require("nvchad.tabufline").next()
