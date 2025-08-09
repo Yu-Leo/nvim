@@ -56,7 +56,7 @@ nvim_tree.setup {
       "Copied",
       "Cut",
     },
-    root_folder_label = ":t:s?$?/...?",
+    root_folder_label = false,
     highlight_git = "name",
     highlight_diagnostics = "name",
     special_files = {},

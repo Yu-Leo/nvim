@@ -260,24 +260,6 @@ return {
     opts = require "configs.gosigns",
   },
   {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          require "configs/statuscol"
-        end,
-      },
-    },
-    event = "BufEnter",
-    opts = {
-      provider_selector = function(bufnr, filetype, buftype)
-        return { "treesitter", "indent" }
-      end,
-    },
-  },
-  {
     "polirritmico/simple-boolean-toggle.nvim",
     event = "BufEnter",
     opts = {

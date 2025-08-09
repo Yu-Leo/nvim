@@ -5,38 +5,13 @@
 -- -@type ChadrcConfig
 local M = {}
 
-local minitabs = function()
-  local fn = vim.fn
-  local btn = require("nvchad.tabufline.utils").btn
-
-  local result, tabs = "", fn.tabpagenr "$"
-  if tabs > 1 then
-    for nr = 1, tabs, 1 do
-      local tab_hl = "TabO" .. (nr == fn.tabpagenr() and "n" or "ff")
-      result = result .. btn(" " .. nr .. " ", tab_hl, "GotoTab", nr)
-    end
-    return result
-  end
-
-  return ""
-end
-
 M.base46 = {
   theme = "savannah",
 }
 
 M.ui = {
-  statusline = {
-    enabled = false,
-  },
-  tabufline = {
-    enabled = true,
-    lazyload = false,
-    order = { "treeOffset", "buffers", "minitabs" },
-    modules = {
-      minitabs = minitabs,
-    },
-  },
+  statusline = { enabled = false },
+  tabufline = { enabled = false },
 }
 
 return M

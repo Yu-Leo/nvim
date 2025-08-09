@@ -28,6 +28,8 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 require("Yu-Leo.statusline").autocmds()
 
+require "Yu-Leo.tabufline.autocmds"
+
 autocmd("BufWritePre", {
   pattern = "*",
   callback = function(args)

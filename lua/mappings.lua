@@ -81,20 +81,20 @@ map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 map("n", "<C-;>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
 
 map("n", "]b", function()
-  require("nvchad.tabufline").next()
+  require("Yu-Leo.tabufline").next()
 end, { desc = "Buffer goto next" })
 
 map("n", "[b", function()
-  require("nvchad.tabufline").prev()
+  require("Yu-Leo.tabufline").prev()
 end, { desc = "Buffer goto prev" })
 
 map("n", "<leader>c", function()
-  require("nvchad.tabufline").close_buffer()
+  require("Yu-Leo.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
 -- TODO: 2025-08-09 test
 map("n", "<leader>b", function()
-  require("nvchad.tabufline").closeAllBufs()
+  require("Yu-Leo.tabufline").close_all_bufs()
 end, { desc = "Buffer close all" })
 
 -- map("n", "<leader>bc", function()
@@ -102,11 +102,11 @@ end, { desc = "Buffer close all" })
 -- end, { desc = "Buffer close all hidden" })
 
 map("n", ">b", function()
-  require("nvchad.tabufline").move_buf(1)
+  require("Yu-Leo.tabufline").move_buf(1)
 end, { desc = "Buffer move right" })
 
 map("n", "<b", function()
-  require("nvchad.tabufline").move_buf(-1)
+  require("Yu-Leo.tabufline").move_buf(-1)
 end, { desc = "Buffer move left" })
 -- Buffers !>
 
