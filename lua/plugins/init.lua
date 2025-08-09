@@ -55,13 +55,19 @@ return {
     event = "BufEnter",
     opts = require "configs.dressing",
   },
-  {
+  { -- TODO: 2025-08-09 test
     "okuuva/auto-save.nvim",
     version = "^1.0.0",
     cmd = "ASToggle",
     event = { "InsertLeave", "TextChanged" },
     opts = {
-      debounce_delay = 500,
+      trigger_events = {
+        immediate_save = { "BufLeave", "FocusLost", "QuitPre", "VimSuspend" },
+        -- defer_save = { "InsertLeave", "TextChanged" },
+        -- cancel_deferred_save = { "InsertEnter" },
+        defer_save = {},
+      },
+      debounce_delay = 2000,
     },
   },
   {
@@ -242,7 +248,9 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    opts = {},
+    opts = {
+        default_flags = {"-i"},
+    },
     ft = { "curl" },
   },
   {

@@ -57,6 +57,8 @@ map("v", "p", '"_dP')
 map("v", "<BS>", '"_d', { noremap = true })
 
 map("i", "<C-p>", '<esc>"ppi', { noremap = true })
+
+map("n", "<C-d>", '"zY"zp', { desc = "Duplicate line" })
 -- Cut & delete !>
 
 -- <! Scroll
@@ -90,13 +92,14 @@ map("n", "<leader>c", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
-map("n", "<leader>C", function()
+-- TODO: 2025-08-09 test
+map("n", "<leader>b", function()
   require("nvchad.tabufline").closeAllBufs()
 end, { desc = "Buffer close all" })
 
-map("n", "<leader>bc", function()
-  require("Yu-Leo.buffers").close_all_hidden()
-end, { desc = "Buffer close all hidden" })
+-- map("n", "<leader>bc", function()
+--   require("Yu-Leo.buffers").close_all_hidden()
+-- end, { desc = "Buffer close all hidden" })
 
 map("n", ">b", function()
   require("nvchad.tabufline").move_buf(1)

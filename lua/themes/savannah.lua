@@ -365,13 +365,14 @@ local function gen_stl_mode_hl(modename, col)
 end
 
 gen_stl_mode_hl("Normal", "nord_blue")
-gen_stl_mode_hl("Visual", "cyan")
+gen_stl_mode_hl("Visual", "orange")
 gen_stl_mode_hl("Insert", "dark_purple")
+gen_stl_mode_hl("Command", "green")
+
 gen_stl_mode_hl("Terminal", "green")
 gen_stl_mode_hl("NTerminal", "yellow")
 gen_stl_mode_hl("Replace", "orange")
 gen_stl_mode_hl("Confirm", "teal")
-gen_stl_mode_hl("Command", "green")
 gen_stl_mode_hl("Select", "blue")
 
 vim.g.terminal_color_0 = M.base_16.base01 -- Dark grey

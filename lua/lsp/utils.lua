@@ -9,6 +9,12 @@ M.on_init = function(client, _)
 end
 
 M.on_attach = function(client, bufnr)
+  -- Ignore diffview files
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  if bufname:match "diffview:///" then
+    client.stop()
+  end
+
   local function map_opts(desc)
     return { buffer = bufnr, desc = "LSP: " .. desc }
   end
