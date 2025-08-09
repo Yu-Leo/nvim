@@ -92,3 +92,11 @@ autocmd("TextYankPost", {
     }
   end,
 })
+
+-- TODO: 2025-08-09
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    vim.cmd "startinsert"
+  end,
+})

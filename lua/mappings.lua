@@ -426,6 +426,7 @@ end, { desc = "Open remote repo in browser" })
 map("n", "<leader>R", "<cmd>GitPortal open_link<CR>", { desc = "Open link in neovim" })
 
 map("n", "<leader>lf", function()
+  vim.cmd "w"
   require("conform").format()
 end, { desc = "Format file", remap = true })
 
@@ -442,7 +443,7 @@ end, { desc = "Go join lines", remap = true })
 
 map("n", "<leader>le", "<cmd>e<CR>", { desc = "LSP restart", remap = true })
 
-map("n", "<leader>os", function()
+map("n", "<leader>tj", function()
   require("simple-boolean-toggle").toggle()
 end, { desc = "Toggle boolean value" })
 

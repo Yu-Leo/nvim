@@ -21,6 +21,7 @@ return {
   },
   {
     "folke/which-key.nvim",
+    enable = false, -- TODO: 2025-08-09 test
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
     opts = {},
@@ -81,6 +82,7 @@ return {
   },
   {
     "folke/persistence.nvim",
+    enable = false, -- TODO: 2025-08-09 test
     event = "BufReadPre",
     opts = {},
   },
