@@ -331,9 +331,10 @@ map("n", "<leader>ghs", require("gitsigns").preview_hunk, { desc = "Git signs: p
 -- Git !>
 
 -- <! Sessions
-map("n", "<leader>sr", function()
-  require("persistence").load()
-end, { desc = "Session restore" })
+-- TODO 2025-08-09 test
+-- map("n", "<leader>sr", function()
+--   require("persistence").load()
+-- end, { desc = "Session restore" })
 -- Sessions !>
 
 -- <! Neotest

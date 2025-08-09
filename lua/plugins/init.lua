@@ -90,6 +90,7 @@ return {
   },
   {
     "tenxsoydev/tabs-vs-spaces.nvim",
+    enable = false, -- TODO: 2025-08-09 test
     config = true,
     event = "BufEnter",
   },
@@ -249,7 +250,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     opts = {
-        default_flags = {"-i"},
+      default_flags = { "-i" },
     },
     ft = { "curl" },
   },

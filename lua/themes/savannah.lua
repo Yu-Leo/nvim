@@ -140,6 +140,8 @@ M.polish_hl = {
     NvimTreePathDarkPurple = { bg = mix_col(M.base_30.dark_purple, M.base_30.darker_black, 70), fg = M.base_16.base05 },
 
     OnYank = { bg = M.base_16.base05, fg = M.base_30.black },
+
+    DevIconDefault = { fg = M.base_30.purple },
   },
 
   nvimtree = {
@@ -150,7 +152,7 @@ M.polish_hl = {
     NvimTreeSymlinkFolderName = { fg = M.base_16.base05 },
     NvimTreeFolderIcon = { fg = M.base_30.folder_bg },
 
-    NvimTreeRootFolder = {  bg = M.base_30.darker_black, fg = M.base_16.base05, bold = true },
+    NvimTreeRootFolder = { bg = M.base_30.darker_black, fg = M.base_16.base05, bold = true },
 
     NvimTreeFolderArrowOpen = { fg = M.base_30.folder_bg },
     NvimTreeFolderArrowClosed = { fg = M.base_30.grey_fg },
