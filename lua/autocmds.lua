@@ -42,11 +42,12 @@ autocmd("BufWritePre", {
   end,
 })
 
-autocmd({ "BufWritePost", "InsertLeave" }, {
-  callback = function()
-    require("lint").try_lint()
-  end,
-})
+-- TODO: 2025-08-10 test
+-- autocmd({ "BufWritePost", "InsertLeave" }, {
+--   callback = function()
+--     require("lint").try_lint()
+--   end,
+-- })
 
 autocmd({ "LspAttach", "BufWritePost" }, {
   callback = function(_)
@@ -54,12 +55,13 @@ autocmd({ "LspAttach", "BufWritePost" }, {
   end,
 })
 
+-- TODO: 2025-08-10 test
 -- Use golangci-lint config from cwd if it exists
-autocmd({ "LspAttach" }, {
-  callback = function(_)
-    require("Yu-Leo.common").check_custom_linters()
-  end,
-})
+-- autocmd({ "LspAttach" }, {
+--   callback = function(_)
+--     require("Yu-Leo.common").check_custom_linters()
+--   end,
+-- })
 
 -- For refresh nvim-tree after switching form the diffview tab
 autocmd({ "TabEnter" }, {
