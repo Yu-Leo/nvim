@@ -423,7 +423,8 @@ map({ "n", "v" }, "<leader>r", function()
   Snacks.gitbrowse.open()
 end, { desc = "Open remote repo in browser" })
 
-map("n", "<leader>R", "<cmd>GitPortal open_link<CR>", { desc = "Open link in neovim" })
+-- TODO 2025-08-11
+-- map("n", "<leader>R", "<cmd>GitPortal open_link<CR>", { desc = "Open link in neovim" })
 
 map("n", "<leader>lf", function()
   vim.cmd "w"

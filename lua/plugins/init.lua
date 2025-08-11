@@ -224,11 +224,12 @@ return {
   {
     "MunifTanjim/nui.nvim",
   },
-  {
-    "trevorhauter/gitportal.nvim",
-    cmd = "GitPortal",
-    opts = {},
-  },
+  -- TODO: 2025-08-11
+  -- {
+  --   "trevorhauter/gitportal.nvim",
+  --   cmd = "GitPortal",
+  --   opts = {},
+  -- },
   {
     "echasnovski/mini.move",
     version = false,

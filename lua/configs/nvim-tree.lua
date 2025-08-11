@@ -25,6 +25,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set("n", "e", api.fs.rename_basename, opts "Rename: Basename")
   vim.keymap.set("n", "gc", api.fs.copy.absolute_path, opts "Copy Absolute Path")
   vim.keymap.set("n", "C", api.fs.copy.relative_path, opts "Copy Relative Path")
+  vim.keymap.set("n", "R", api.tree.reload, opts "Refresh")
 end
 
 nvim_tree.setup {

@@ -141,7 +141,7 @@ M.polish_hl = {
 
     OnYank = { bg = M.base_16.base05, fg = M.base_30.black },
 
-    DevIconDefault = { fg = M.base_30.purple },
+    DevIconDefault = { fg = M.base_30.nord_blue },
   },
 
   nvimtree = {

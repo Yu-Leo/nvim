@@ -6,6 +6,8 @@ local style_buf = require("Yu-Leo.tabufline.utils").style_buf
 local cur_buf = api.nvim_get_current_buf
 
 local order = { "treeOffset", "buffers", "minitabs" }
+-- TODO 2025-08-13
+-- local order = { "treeOffset", "empty", "minitabs" }
 local bufwidth = 20
 
 local M = {}
@@ -83,6 +85,10 @@ M.buffers = function()
   end
 
   return table.concat(buffers) .. txt("%=", "Fill") -- buffers + empty space
+end
+
+M.empty = function()
+  return txt("%=", "Fill")
 end
 
 g.TbTabsToggled = 0
