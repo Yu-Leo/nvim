@@ -45,7 +45,7 @@ end
 M.format_qf_item = function(raw_item, line_idx)
   local file_path = utils.format_file_path(vim.fn.bufname(raw_item.bufnr))
   local position = raw_item.lnum .. ":" .. raw_item.col - 1
-  local text = raw_item.text:gsub("^%s*(.-)%s*$", "%1")
+  -- local text = raw_item.text:gsub("^%s*(.-)%s*$", "%1")
 
   local line_hls = {}
 
@@ -63,7 +63,9 @@ M.format_qf_item = function(raw_item, line_idx)
     col_end = #file_path + 2 + #position,
   })
 
-  return file_path .. " |" .. position .. "| " .. text, line_hls
+  -- TODO: 2025-08-14 test
+  -- return file_path .. " |" .. position .. "| " .. text, line_hls
+  return file_path .. " |" .. position .. "|", line_hls
 end
 
 return M

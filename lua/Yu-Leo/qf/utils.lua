@@ -29,20 +29,12 @@ end
 ---@param path string
 ---@return string
 M.format_file_path = function(path)
-  local cwd = vim.fn.getcwd()
-  local cwd_dirname = cwd:match "([^/\\]+)[/\\]*$"
-  local home = vim.fn.expand "~"
+  local cwd = vim.loop.cwd()
+  local cwd_name = vim.fn.fnamemodify(cwd, ":t")
+  local normalized_filepath = vim.fn.fnamemodify(path, ":p")
 
-  if not string.find(path, "/") then
-    return cwd_dirname .. "/" .. path
-  end
-
-  if path:sub(1, #cwd) == cwd then
-    return cwd_dirname .. "/" .. path:sub(#cwd + 2)
-  end
-
-  if path:sub(1, #home) == home then
-    return path:sub(#home + 2)
+  if string.sub(normalized_filepath, 1, #cwd) == cwd then
+    return cwd_name .. "/" .. vim.fn.fnamemodify(normalized_filepath, ":~:.")
   end
 
   return path
