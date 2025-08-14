@@ -8,6 +8,7 @@ o.showmode = false
 o.clipboard = "unnamedplus"
 o.cursorline = true
 o.cursorlineopt = "number"
+o.guicursor = "n-v-c-sm-t:block,i-ci-ve:ver25,r-cr-o:hor20"
 
 -- Indenting
 o.expandtab = true
