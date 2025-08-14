@@ -202,7 +202,7 @@ map("n", "<leader>fw", function()
   }
 end, { desc = "Telescope find words" })
 
-map("n", "<leader>fo", function()
+map("n", "<leader>fj", function()
   require("snipe").open_buffer_menu()
 end, { desc = "Find open buffers" })
 
@@ -339,20 +339,14 @@ map("n", "<leader>ghs", require("gitsigns").preview_hunk, { desc = "Git signs: p
 
 -- <! Neotest
 map("n", "<leader>T", function()
+  vim.cmd "w"
   require("neotest").run.run()
 end, { desc = "Run nearest test" })
 
 map("n", "<leader>tm", function()
+  vim.cmd "w"
   require("neotest").run.run(vim.fn.expand "%")
 end, { desc = "Run tests in file" })
-
-map("n", "<leader>tp", function()
-  require("neotest").run.run(vim.fn.getcwd())
-end, { desc = "Run tests in project" })
-
-map("n", "<leader>tl", function()
-  require("neotest").run.run_last()
-end, { desc = "Run last test" })
 
 map("n", "<leader>to", "<cmd>Neotest output<CR>", { desc = "Neotest output" })
 map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Neotest summary" })
@@ -419,13 +413,6 @@ end, { desc = "Move to func name (golang)", remap = true })
 
 map("n", "<leader>fl", "<cmd>copen<CR>", { desc = "Open quickfix" })
 
-map({ "n", "v" }, "<leader>r", function()
-  Snacks.gitbrowse.open()
-end, { desc = "Open remote repo in browser" })
-
--- TODO 2025-08-11
--- map("n", "<leader>R", "<cmd>GitPortal open_link<CR>", { desc = "Open link in neovim" })
-
 map("n", "<leader>lf", function()
   vim.cmd "w"
   require("conform").format()
@@ -442,7 +429,12 @@ map("n", "<leader>lT", function()
   require("go.lsp").codeaction { cmd = "apply_fix", only = "refactor.rewrite", filters = { "join_lines" } }
 end, { desc = "Go join lines", remap = true })
 
-map("n", "<leader>le", "<cmd>e<CR>", { desc = "LSP restart", remap = true })
+map("n", "<leader>le", function()
+  local clients = vim.lsp.get_clients { bufnr = 0 }
+  vim.lsp.stop_client(clients)
+  vim.cmd.update()
+  vim.defer_fn(vim.cmd.edit, 1000)
+end, { desc = "LSP restart", remap = true })
 
 map("n", "<leader>tj", function()
   require("simple-boolean-toggle").toggle()
@@ -469,3 +461,39 @@ end, { desc = "Toggle autoformat on save", remap = true })
 
 map("n", "<leader>L", ":Lazy<CR>", { desc = "Open Lazy" })
 -- Some !>
+
+-- <! GitLinker
+local actions = {
+  r = { action = require("gitlinker.actions").system, desc = "browser" },
+  R = { action = require("gitlinker.actions").clipboard, desc = "clipboard" },
+}
+
+local router_types = {
+  j = { type = "current_branch", desc = "current branch" },
+  p = { type = "permalink", desc = "permalink" },
+  m = { type = "default_branch", desc = "default branch" },
+}
+
+local modes = { "n", "v" }
+
+for _, mode in ipairs(modes) do
+  for action_key, action_info in pairs(actions) do
+    for router_key, router_info in pairs(router_types) do
+      local mode_title = mode == "v" and "block" or "file"
+
+      map(mode, "<leader>" .. action_key .. router_key, function()
+        local filepath = vim.api.nvim_buf_get_name(0)
+        if filepath == "" or vim.fn.filereadable(filepath) == 0 then
+          return
+        end
+
+        require("gitlinker").link {
+          router_type = mode_title .. "_" .. router_info.type,
+          action = action_info.action,
+        }
+      end, { desc = string.format("Gitlinker: [%s] [%s] [%s]", action_info.desc, router_info.desc, mode_title) })
+    end
+  end
+end
+
+-- GitLinker !>

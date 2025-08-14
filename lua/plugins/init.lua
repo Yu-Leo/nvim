@@ -290,4 +290,9 @@ return {
     dependencies = { "kana/vim-textobj-user" },
     event = "VeryLazy",
   },
+  {
+    "linrongbin16/gitlinker.nvim",
+    event = "VeryLazy",
+    opts = require "configs.gitlinker",
+  },
 }

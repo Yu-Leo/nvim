@@ -77,13 +77,14 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("User", {
-  pattern = "PersistenceSavePre",
-  callback = function()
-    require("nvim-tree.api").tree.close()
-    require("neotest").summary.close()
-  end,
-})
+-- TODO: 2025-08-10 test
+-- autocmd("User", {
+--   pattern = "PersistenceSavePre",
+--   callback = function()
+--     require("nvim-tree.api").tree.close()
+--     require("neotest").summary.close()
+--   end,
+-- })
 
 autocmd("TextYankPost", {
   pattern = "*",
