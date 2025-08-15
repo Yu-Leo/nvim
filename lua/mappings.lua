@@ -202,6 +202,10 @@ map("n", "<leader>fw", function()
   }
 end, { desc = "Telescope find words" })
 
+map("n", "<leader>fo", function()
+  require("telescope.builtin").buffers()
+end, { desc = "Telescope find buffers" })
+
 map("n", "<leader>fj", function()
   require("snipe").open_buffer_menu()
 end, { desc = "Find open buffers" })
@@ -328,6 +332,8 @@ map("n", "[h", function()
 end, { desc = "Go to prev git hunk" })
 
 map("n", "<leader>ghs", require("gitsigns").preview_hunk, { desc = "Git signs: preview hunk" })
+map("n", "<leader>gha", require("gitsigns").stage_hunk, { desc = "Git signs: stage hunk" })
+map("n", "<leader>ghr", require("gitsigns").reset_hunk, { desc = "Git signs: reset hunk" })
 -- Git !>
 
 -- <! Sessions

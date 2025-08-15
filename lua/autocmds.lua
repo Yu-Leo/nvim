@@ -49,7 +49,9 @@ autocmd("BufWritePre", {
 --   end,
 -- })
 
-autocmd({ "LspAttach", "BufWritePost" }, {
+-- TODO: 2025-08-15 test
+-- autocmd({ "LspAttach", "BufWritePost" }, {
+autocmd({ "LspAttach" }, {
   callback = function(_)
     vim.lsp.codelens.refresh { bufnr = 0 }
   end,
