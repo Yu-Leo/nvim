@@ -8,6 +8,7 @@ local cur_buf = api.nvim_get_current_buf
 local order = { "treeOffset", "buffers", "minitabs" }
 -- TODO 2025-08-13
 -- local order = { "treeOffset", "empty", "minitabs" }
+-- local order = { "treeOffset", "current_buffer", "minitabs" }
 local bufwidth = 20
 
 local M = {}
@@ -85,6 +86,16 @@ M.buffers = function()
   end
 
   return table.concat(buffers) .. txt("%=", "Fill") -- buffers + empty space
+end
+
+M.current_buffer = function()
+  for i, nr in ipairs(vim.t.bufs) do
+    local current = cur_buf() == nr
+    if current then
+      return style_buf(nr, i, bufwidth) .. txt("%=", "Fill")
+    end
+  end
+  return txt("%=", "Fill")
 end
 
 M.empty = function()

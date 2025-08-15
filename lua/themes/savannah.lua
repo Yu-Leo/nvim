@@ -78,17 +78,20 @@ M.polish_hl = {
     MarkSignHL = { fg = M.base_16.base0B },
 
     -- GitSigns
-    GitSignsStagedAdd = { fg = M.base_16.base0B },
+    -- GitSignsStagedAdd = { fg = M.base_16.base0B },
+    GitSignsStagedAdd = { fg = mix_col(M.base_16.base0B, M.base_30.black, 50) },
     GitSignsAdd = { fg = M.base_16.base0B },
     GitSignsAddPreview = { fg = M.base_16.base0B },
 
-    GitSignsStagedChange = { fg = M.base_16.base0A },
+    -- GitSignsStagedChange = { fg = M.base_16.base0A },
+    GitSignsStagedChange = { fg = mix_col(M.base_16.base0A, M.base_30.black, 50) },
     GitSignsChange = { fg = M.base_16.base0A },
 
-    GitSignsStagedDelete = { fg = M.base_16.base08 },
+    -- GitSignsStagedDelete = { fg = M.base_16.base08 },
+    GitSignsStagedDelete = { fg = mix_col(M.base_16.base08, M.base_30.black, 50) },
     GitSignsDelete = { fg = M.base_16.base08 },
 
-    GitSignsStagedChangedelete = { fg = M.base_16.base08 },
+    GitSignsStagedChangedelete = { fg = mix_col(M.base_16.base08, M.base_30.black, 50) },
     GitSignsChangedelete = { fg = M.base_16.base08 },
 
     LspCodeLens = { fg = M.base_30.dark_purple },

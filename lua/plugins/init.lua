@@ -100,6 +100,9 @@ return {
     "saghen/blink.cmp",
     dependencies = {
       {
+        -- TODO: 2025-08-15 test
+        { "samiulsami/cmp-go-deep", dependencies = { "kkharji/sqlite.lua" } },
+        { "saghen/blink.compat" },
         "windwp/nvim-autopairs",
         opts = {},
       },
