@@ -295,4 +295,9 @@ return {
     event = "VeryLazy",
     opts = require "configs.gitlinker",
   },
+  {
+    "mistweaverco/kulala.nvim",
+    ft = { "http", "rest" },
+    opts = require "configs.kulala",
+  },
 }

@@ -25,20 +25,6 @@ return {
     default = {
       "lsp",
       "path",
-      -- TODO: 2025-08-15 test
-      "go_deep",
-    },
-    -- TODO: 2025-08-15 test
-    providers = {
-      go_deep = {
-        name = "go_deep",
-        module = "blink.compat.source",
-        min_keyword_length = 3,
-        max_items = 5,
-        opts = {
-          -- See below for configuration options
-        },
-      },
     },
   },
   fuzzy = { implementation = "prefer_rust_with_warning" },
