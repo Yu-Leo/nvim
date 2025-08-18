@@ -61,10 +61,10 @@ map("n", "<C-d>", '"zY"zp', { desc = "Duplicate line" })
 -- <! Scroll
 local keymap = {
   ["<A-k>"] = function()
-    require("neoscroll").scroll(-0.1, { move_cursor = false, duration = 100 })
+    require("neoscroll").scroll(-0.12, { move_cursor = false, duration = 100 })
   end,
   ["<A-j>"] = function()
-    require("neoscroll").scroll(0.1, { move_cursor = false, duration = 100 })
+    require("neoscroll").scroll(0.12, { move_cursor = false, duration = 100 })
   end,
 }
 for key, func in pairs(keymap) do
