@@ -24,13 +24,32 @@ return {
       mode = { "n", "v" },
       ft = { "http", "rest" },
     },
+    ["Select environment"] = {
+      "e",
+      function()
+        require("kulala").set_selected_env()
+      end,
+      ft = { "http", "rest" },
+    },
+    ["Copy as cURL"] = {
+      "c",
+      function()
+        require("kulala").copy()
+      end,
+      ft = { "http", "rest" },
+    },
+    ["Paste from curl"] = {
+      "C",
+      function()
+        require("kulala").from_curl()
+      end,
+      ft = { "http", "rest" },
+    },
     ["Open scratchpad"] = false,
     ["Open kulala"] = false,
     ["Toggle headers/body"] = false,
     ["Show stats"] = false,
     ["Close window"] = false,
-    ["Copy as cURL"] = false,
-    ["Paste from curl"] = false,
     ["Send request"] = false,
     ["Send all requests"] = false,
     ["Inspect current request"] = false,
@@ -38,7 +57,6 @@ return {
     ["Find request"] = false,
     ["Jump to next request"] = false,
     ["Jump to previous request"] = false,
-    ["Select environment"] = false,
     ["Manage Auth Config"] = false,
     ["Download GraphQL schema"] = false,
     ["Clear globals"] = false,
