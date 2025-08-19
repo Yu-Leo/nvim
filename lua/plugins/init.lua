@@ -21,7 +21,6 @@ return {
   },
   {
     "folke/which-key.nvim",
-    enable = false, -- TODO: 2025-08-09 test
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
     opts = {},
@@ -56,16 +55,13 @@ return {
     event = "BufEnter",
     opts = require "configs.dressing",
   },
-  { -- TODO: 2025-08-09 test
+  {
     "okuuva/auto-save.nvim",
     version = "^1.0.0",
-    cmd = "ASToggle",
     event = { "InsertLeave", "TextChanged" },
     opts = {
       trigger_events = {
         immediate_save = { "BufLeave", "FocusLost", "QuitPre", "VimSuspend" },
-        -- defer_save = { "InsertLeave", "TextChanged" },
-        -- cancel_deferred_save = { "InsertEnter" },
         defer_save = {},
       },
       debounce_delay = 2000,
@@ -81,18 +77,12 @@ return {
     cmd = { "Git", "G" },
   },
   {
-    "folke/persistence.nvim",
-    enable = false, -- TODO: 2025-08-09 test
-    event = "BufReadPre",
-    opts = {},
-  },
-  {
     "karb94/neoscroll.nvim",
     event = "BufEnter",
   },
   {
     "tenxsoydev/tabs-vs-spaces.nvim",
-    enable = false, -- TODO: 2025-08-09 test
+    enabled = false, -- TODO: 2025-08-09 test
     config = true,
     event = "BufEnter",
   },
@@ -224,12 +214,6 @@ return {
   {
     "MunifTanjim/nui.nvim",
   },
-  -- TODO: 2025-08-11
-  -- {
-  --   "trevorhauter/gitportal.nvim",
-  --   cmd = "GitPortal",
-  --   opts = {},
-  -- },
   {
     "echasnovski/mini.move",
     version = false,

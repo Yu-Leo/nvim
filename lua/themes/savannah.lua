@@ -179,6 +179,7 @@ M.polish_hl = {
     NvimTreeGitDeleted = { fg = M.base_30.red },
     NvimTreeGitStagedIcon = { fg = M.base_30.green },
     NvimTreeGitFolderDeletedHL = { fg = M.base_16.base05, link = "" },
+    NvimTreeGitFileRenamedHL = { fg = M.base_16.base0B },
 
     -- Diagnostics
     NvimTreeDiagnosticErrorFileHL = { undercurl = true, sp = M.base_16.base08, link = "" },

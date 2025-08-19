@@ -333,13 +333,6 @@ map("n", "<leader>gha", require("gitsigns").stage_hunk, { desc = "Git signs: sta
 map("n", "<leader>ghr", require("gitsigns").reset_hunk, { desc = "Git signs: reset hunk" })
 -- Git !>
 
--- <! Sessions
--- TODO 2025-08-09 test
--- map("n", "<leader>sr", function()
---   require("persistence").load()
--- end, { desc = "Session restore" })
--- Sessions !>
-
 -- <! Neotest
 map("n", "<leader>T", function()
   vim.cmd "w"

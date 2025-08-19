@@ -42,28 +42,11 @@ autocmd("BufWritePre", {
   end,
 })
 
--- TODO: 2025-08-10 test
--- autocmd({ "BufWritePost", "InsertLeave" }, {
---   callback = function()
---     require("lint").try_lint()
---   end,
--- })
-
--- TODO: 2025-08-15 test
--- autocmd({ "LspAttach", "BufWritePost" }, {
 autocmd({ "LspAttach" }, {
   callback = function(_)
     vim.lsp.codelens.refresh { bufnr = 0 }
   end,
 })
-
--- TODO: 2025-08-10 test
--- Use golangci-lint config from cwd if it exists
--- autocmd({ "LspAttach" }, {
---   callback = function(_)
---     require("Yu-Leo.common").check_custom_linters()
---   end,
--- })
 
 -- For refresh nvim-tree after switching form the diffview tab
 autocmd({ "TabEnter" }, {
@@ -79,15 +62,6 @@ autocmd("FileType", {
   end,
 })
 
--- TODO: 2025-08-10 test
--- autocmd("User", {
---   pattern = "PersistenceSavePre",
---   callback = function()
---     require("nvim-tree.api").tree.close()
---     require("neotest").summary.close()
---   end,
--- })
-
 autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
@@ -98,7 +72,6 @@ autocmd("TextYankPost", {
   end,
 })
 
--- TODO: 2025-08-09
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   callback = function()
