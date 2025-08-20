@@ -1,16 +1,12 @@
 return {
   {
-    "NvChad/NvChad",
-    branch = "v2.5",
+    "nvchad/base46",
+    init = function()
+      require("base46").load_all_highlights()
+    end,
   },
   {
     "nvim-lua/plenary.nvim",
-  },
-  {
-    "nvchad/ui",
-    config = function()
-      require "nvchad"
-    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -26,12 +22,6 @@ return {
     opts = {},
   },
   {
-    "nvchad/base46",
-    init = function()
-      require("base46").load_all_highlights()
-    end,
-  },
-  {
     "nvim-tree/nvim-tree.lua",
     version = "*",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
@@ -42,7 +32,7 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     opts = function()
-      return { override = require "nvchad.icons.devicons" }
+      return { override = require "Yu-Leo.devicons" }
     end,
   },
   {
@@ -78,12 +68,6 @@ return {
   },
   {
     "karb94/neoscroll.nvim",
-    event = "BufEnter",
-  },
-  {
-    "tenxsoydev/tabs-vs-spaces.nvim",
-    enabled = false, -- TODO: 2025-08-09 test
-    config = true,
     event = "BufEnter",
   },
   {
@@ -200,17 +184,6 @@ return {
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
-  },
-  {
-    "mfussenegger/nvim-lint",
-    enabled = false, -- TODO: 2025-08-19 test
-    event = {
-      "BufReadPre",
-      "BufNewFile",
-    },
-    config = function()
-      require "configs.nvim-lint"
-    end,
   },
   {
     "MunifTanjim/nui.nvim",

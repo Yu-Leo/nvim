@@ -10,8 +10,5 @@ return {
     "goimports",
     "golines",
     "stylua",
-
-    -- Linters
-    "golangci-lint",
   },
 }

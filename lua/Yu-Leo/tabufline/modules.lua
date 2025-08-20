@@ -5,8 +5,8 @@ local txt = require("Yu-Leo.tabufline.utils").txt
 local style_buf = require("Yu-Leo.tabufline.utils").style_buf
 local cur_buf = api.nvim_get_current_buf
 
+-- TODO test 2025-08-13
 local order = { "treeOffset", "buffers", "minitabs" }
--- TODO 2025-08-13
 -- local order = { "treeOffset", "empty", "minitabs" }
 -- local order = { "treeOffset", "current_buffer", "minitabs" }
 local bufwidth = 20

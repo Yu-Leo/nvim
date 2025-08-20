@@ -1,15 +1,14 @@
-local nv_utils = require "nvchad.stl.utils"
 local utils = require "Yu-Leo.statusline.utils"
 
 local M = {}
 
 -- <! Render blocks
 local render_block_mode = function(_)
-  if not nv_utils.is_activewin() then
+  if not utils.is_activewin() then
     return "", 0
   end
 
-  local modes = nv_utils.modes
+  local modes = utils.modes
   local m = vim.api.nvim_get_mode().mode
   local mode = "%#StMode" .. modes[m][2] .. "#" .. "█" .. "%#StBase#"
 
@@ -436,7 +435,7 @@ M.state = {
 }
 
 M.generate = function()
-  M.state.bufnr = nv_utils.stbufnr()
+  M.state.bufnr = utils.stbufnr()
   M.state.path = vim.api.nvim_buf_get_name(M.state.bufnr)
   M.state.name = M.state.path:match "([^/\\]+)[/\\]*$"
   M.state.cwd = vim.fn.getcwd()

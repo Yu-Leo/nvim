@@ -42,22 +42,6 @@ vim.lsp.config("gopls", {
       analyses = {
         unusedvariable = true,
         shadow = true,
-
-        -- duplicated by default golangci-lint config
-        -- TODO: 2025-08-19 test
-        -- appends = false,
-        -- assign = false,
-        -- atomic = false,
-        -- composites = false,
-        -- defers = false,
-        -- httpresponse = false,
-        -- ifaceassert = false,
-        -- lostcancel = false,
-        -- nilness = false,
-        -- simplifycompositelit = false,
-        -- simplifyrange = false,
-        -- simplifyslice = false,
-        -- waitgroup = false,
       },
     },
   },
