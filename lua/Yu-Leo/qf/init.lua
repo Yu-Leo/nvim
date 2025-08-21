@@ -59,13 +59,14 @@ M.format_qf_item = function(raw_item, line_idx)
   table.insert(line_hls, {
     group = "Comment",
     line = line_idx,
-    col_start = #file_path + 2,
-    col_end = #file_path + 2 + #position,
+    col_start = #file_path + 1,
+    col_end = #file_path + 1 + #position,
   })
 
   -- TODO: 2025-08-14 test
   -- return file_path .. " |" .. position .. "| " .. text, line_hls
-  return file_path .. " |" .. position .. "|", line_hls
+  -- return file_path .. " |" .. position .. "|", line_hls
+  return file_path .. " " .. position, line_hls
 end
 
 return M
