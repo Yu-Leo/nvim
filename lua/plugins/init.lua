@@ -17,6 +17,7 @@ return {
   },
   {
     "folke/which-key.nvim",
+    enabled = false, -- TODO: 2025-08-22 test
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
     opts = {},
