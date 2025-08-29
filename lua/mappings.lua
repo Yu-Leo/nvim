@@ -14,9 +14,6 @@ map("n", "<C-q>", "<cmd>confirm qall<CR>", { desc = "General quit neovim" })
 map("n", "<C-`>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 map("n", "q:", "", { desc = "Disable commands history" })
 
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
-
 map("n", "n", "nzz", { desc = "Go to next search result" })
 map("n", "N", "Nzz", { desc = "Go to prev search result" })
 
@@ -57,15 +54,17 @@ map("v", "p", '"_dP')
 map("v", "<BS>", '"_d', { noremap = true })
 
 map("i", "<C-p>", '<esc>"ppi', { noremap = true })
+
+map("n", "<C-d>", '"zY"zp', { desc = "Duplicate line" })
 -- Cut & delete !>
 
 -- <! Scroll
 local keymap = {
   ["<A-k>"] = function()
-    require("neoscroll").scroll(-0.1, { move_cursor = false, duration = 100 })
+    require("neoscroll").scroll(-0.12, { move_cursor = false, duration = 100 })
   end,
   ["<A-j>"] = function()
-    require("neoscroll").scroll(0.1, { move_cursor = false, duration = 100 })
+    require("neoscroll").scroll(0.12, { move_cursor = false, duration = 100 })
   end,
 }
 for key, func in pairs(keymap) do
@@ -76,34 +75,34 @@ end
 -- <! Buffers
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 
-map("n", "<C-,>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
+map("n", "<C-;>", "<cmd>e #<CR>", { desc = "Buffer alternative" })
 
 map("n", "]b", function()
-  require("nvchad.tabufline").next()
+  require("Yu-Leo.tabufline").next()
 end, { desc = "Buffer goto next" })
 
 map("n", "[b", function()
-  require("nvchad.tabufline").prev()
+  require("Yu-Leo.tabufline").prev()
 end, { desc = "Buffer goto prev" })
 
 map("n", "<leader>c", function()
-  require("nvchad.tabufline").close_buffer()
+  require("Yu-Leo.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
-map("n", "<leader>C", function()
-  require("nvchad.tabufline").closeAllBufs()
+map("n", "<leader>b", function()
+  require("Yu-Leo.tabufline").close_all_bufs()
 end, { desc = "Buffer close all" })
 
-map("n", "<leader>bc", function()
+map("n", "<leader>C", function()
   require("Yu-Leo.buffers").close_all_hidden()
 end, { desc = "Buffer close all hidden" })
 
 map("n", ">b", function()
-  require("nvchad.tabufline").move_buf(1)
+  require("Yu-Leo.tabufline").move_buf(1)
 end, { desc = "Buffer move right" })
 
 map("n", "<b", function()
-  require("nvchad.tabufline").move_buf(-1)
+  require("Yu-Leo.tabufline").move_buf(-1)
 end, { desc = "Buffer move left" })
 -- Buffers !>
 
@@ -200,6 +199,10 @@ map("n", "<leader>fw", function()
 end, { desc = "Telescope find words" })
 
 map("n", "<leader>fo", function()
+  require("telescope.builtin").buffers()
+end, { desc = "Telescope find buffers" })
+
+map("n", "<leader>fj", function()
   require("snipe").open_buffer_menu()
 end, { desc = "Find open buffers" })
 
@@ -325,30 +328,20 @@ map("n", "[h", function()
 end, { desc = "Go to prev git hunk" })
 
 map("n", "<leader>ghs", require("gitsigns").preview_hunk, { desc = "Git signs: preview hunk" })
+map("n", "<leader>gha", require("gitsigns").stage_hunk, { desc = "Git signs: stage hunk" })
+map("n", "<leader>ghr", require("gitsigns").reset_hunk, { desc = "Git signs: reset hunk" })
 -- Git !>
-
--- <! Sessions
-map("n", "<leader>sr", function()
-  require("persistence").load()
-end, { desc = "Session restore" })
--- Sessions !>
 
 -- <! Neotest
 map("n", "<leader>T", function()
+  vim.cmd "w"
   require("neotest").run.run()
 end, { desc = "Run nearest test" })
 
 map("n", "<leader>tm", function()
+  vim.cmd "w"
   require("neotest").run.run(vim.fn.expand "%")
 end, { desc = "Run tests in file" })
-
-map("n", "<leader>tp", function()
-  require("neotest").run.run(vim.fn.getcwd())
-end, { desc = "Run tests in project" })
-
-map("n", "<leader>tl", function()
-  require("neotest").run.run_last()
-end, { desc = "Run last test" })
 
 map("n", "<leader>to", "<cmd>Neotest output<CR>", { desc = "Neotest output" })
 map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Neotest summary" })
@@ -404,8 +397,10 @@ map("n", "<leader>vo", function()
   vim.cmd(tostring(bottom))
 end, { desc = "Select commented lines around", remap = true })
 
-map("n", "mp", "ysiW(%i<BS>, ", { desc = "Add return param", remap = true })
+map("n", "mp", "ysiW(lxh%Xi, ", { desc = "Add return param (Go) after", remap = true })
+map("n", "mP", "ysiW(%X%a", { desc = "Add return param (Go) before", remap = true })
 map("n", "<leader>ti", "A // TODO: ", { desc = "Add TODO comment", remap = true })
+map("n", "<leader>;", "mqA;<Esc>`q", { desc = "Add ; to end of line", remap = true })
 
 map("n", "mf", function()
   require("Yu-Leo.moves").move_to_func_name()
@@ -413,13 +408,8 @@ end, { desc = "Move to func name (golang)", remap = true })
 
 map("n", "<leader>fl", "<cmd>copen<CR>", { desc = "Open quickfix" })
 
-map({ "n", "v" }, "<leader>r", function()
-  Snacks.gitbrowse.open()
-end, { desc = "Open remote repo in browser" })
-
-map("n", "<leader>R", "<cmd>GitPortal open_link<CR>", { desc = "Open link in neovim" })
-
 map("n", "<leader>lf", function()
+  vim.cmd "w"
   require("conform").format()
 end, { desc = "Format file", remap = true })
 
@@ -434,9 +424,14 @@ map("n", "<leader>lT", function()
   require("go.lsp").codeaction { cmd = "apply_fix", only = "refactor.rewrite", filters = { "join_lines" } }
 end, { desc = "Go join lines", remap = true })
 
-map("n", "<leader>le", "<cmd>e<CR>", { desc = "LSP restart", remap = true })
+map("n", "<leader>le", function()
+  local clients = vim.lsp.get_clients { bufnr = 0 }
+  vim.lsp.stop_client(clients)
+  vim.cmd.update()
+  vim.defer_fn(vim.cmd.edit, 1000)
+end, { desc = "LSP restart", remap = true })
 
-map("n", "<leader>os", function()
+map("n", "<leader>tj", function()
   require("simple-boolean-toggle").toggle()
 end, { desc = "Toggle boolean value" })
 
@@ -461,3 +456,39 @@ end, { desc = "Toggle autoformat on save", remap = true })
 
 map("n", "<leader>L", ":Lazy<CR>", { desc = "Open Lazy" })
 -- Some !>
+
+-- <! GitLinker
+local actions = {
+  r = { action = require("gitlinker.actions").system, desc = "browser" },
+  R = { action = require("gitlinker.actions").clipboard, desc = "clipboard" },
+}
+
+local router_types = {
+  j = { type = "current_branch", desc = "current branch" },
+  p = { type = "permalink", desc = "permalink" },
+  m = { type = "default_branch", desc = "default branch" },
+}
+
+local modes = { "n", "v" }
+
+for _, mode in ipairs(modes) do
+  for action_key, action_info in pairs(actions) do
+    for router_key, router_info in pairs(router_types) do
+      local mode_title = mode == "v" and "block" or "file"
+
+      map(mode, "<leader>" .. action_key .. router_key, function()
+        local filepath = vim.api.nvim_buf_get_name(0)
+        if filepath == "" or vim.fn.filereadable(filepath) == 0 then
+          return
+        end
+
+        require("gitlinker").link {
+          router_type = mode_title .. "_" .. router_info.type,
+          action = action_info.action,
+        }
+      end, { desc = string.format("Gitlinker: [%s] [%s] [%s]", action_info.desc, router_info.desc, mode_title) })
+    end
+  end
+end
+
+-- GitLinker !>

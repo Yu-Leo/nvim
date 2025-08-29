@@ -25,6 +25,8 @@ local function my_on_attach(bufnr)
   vim.keymap.set("n", "e", api.fs.rename_basename, opts "Rename: Basename")
   vim.keymap.set("n", "gc", api.fs.copy.absolute_path, opts "Copy Absolute Path")
   vim.keymap.set("n", "C", api.fs.copy.relative_path, opts "Copy Relative Path")
+  vim.keymap.set("n", "R", api.tree.reload, opts "Refresh")
+  vim.keymap.set("n", "H", api.node.navigate.parent, opts "Go to parent node")
 end
 
 nvim_tree.setup {
@@ -56,7 +58,7 @@ nvim_tree.setup {
       "Copied",
       "Cut",
     },
-    root_folder_label = ":t:s?$?/...?",
+    root_folder_label = false,
     highlight_git = "name",
     highlight_diagnostics = "name",
     special_files = {},

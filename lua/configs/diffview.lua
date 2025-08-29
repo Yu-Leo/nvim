@@ -24,7 +24,7 @@ require("diffview").setup {
       winbar_info = true,
     },
     merge_tool = {
-      layout = "diff3_horizontal",
+      layout = "diff3_mixed",
       disable_diagnostics = true,
       winbar_info = true,
     },
@@ -275,7 +275,12 @@ require("diffview").setup {
         { desc = "Update stats and entries in the file list" },
       },
       { "n", "<leader>e", actions.toggle_files, { desc = "Toggle the file panel" } },
-
+      {
+        "n",
+        "go",
+        actions.goto_file_edit,
+        { desc = "Open the file in the previous tabpage" },
+      },
       { "n", "[x", actions.prev_conflict, { desc = "Go to the previous conflict" } },
       { "n", "]x", actions.next_conflict, { desc = "Go to the next conflict" } },
       { "n", "g?", actions.help "file_panel", { desc = "Open the help panel" } },

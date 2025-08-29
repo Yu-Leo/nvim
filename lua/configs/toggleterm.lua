@@ -1,9 +1,6 @@
 return {
   winbar = {
-    enabled = true,
-    name_formatter = function(term)
-      return "term#" .. tostring(term.id)
-    end,
+    enabled = false,
   },
   highlights = {
     Normal = {

@@ -78,17 +78,20 @@ M.polish_hl = {
     MarkSignHL = { fg = M.base_16.base0B },
 
     -- GitSigns
-    GitSignsStagedAdd = { fg = M.base_16.base0B },
+    -- GitSignsStagedAdd = { fg = M.base_16.base0B },
+    GitSignsStagedAdd = { fg = mix_col(M.base_16.base0B, M.base_30.black, 50) },
     GitSignsAdd = { fg = M.base_16.base0B },
     GitSignsAddPreview = { fg = M.base_16.base0B },
 
-    GitSignsStagedChange = { fg = M.base_16.base0A },
+    -- GitSignsStagedChange = { fg = M.base_16.base0A },
+    GitSignsStagedChange = { fg = mix_col(M.base_16.base0A, M.base_30.black, 50) },
     GitSignsChange = { fg = M.base_16.base0A },
 
-    GitSignsStagedDelete = { fg = M.base_16.base08 },
+    -- GitSignsStagedDelete = { fg = M.base_16.base08 },
+    GitSignsStagedDelete = { fg = mix_col(M.base_16.base08, M.base_30.black, 50) },
     GitSignsDelete = { fg = M.base_16.base08 },
 
-    GitSignsStagedChangedelete = { fg = M.base_16.base08 },
+    GitSignsStagedChangedelete = { fg = mix_col(M.base_16.base08, M.base_30.black, 50) },
     GitSignsChangedelete = { fg = M.base_16.base08 },
 
     LspCodeLens = { fg = M.base_30.dark_purple },
@@ -140,6 +143,8 @@ M.polish_hl = {
     NvimTreePathDarkPurple = { bg = mix_col(M.base_30.dark_purple, M.base_30.darker_black, 70), fg = M.base_16.base05 },
 
     OnYank = { bg = M.base_16.base05, fg = M.base_30.black },
+
+    DevIconDefault = { fg = M.base_30.nord_blue },
   },
 
   nvimtree = {
@@ -150,7 +155,7 @@ M.polish_hl = {
     NvimTreeSymlinkFolderName = { fg = M.base_16.base05 },
     NvimTreeFolderIcon = { fg = M.base_30.folder_bg },
 
-    NvimTreeRootFolder = { fg = M.base_16.base05, bold = true },
+    NvimTreeRootFolder = { bg = M.base_30.darker_black, fg = M.base_16.base05, bold = true },
 
     NvimTreeFolderArrowOpen = { fg = M.base_30.folder_bg },
     NvimTreeFolderArrowClosed = { fg = M.base_30.grey_fg },
@@ -174,6 +179,7 @@ M.polish_hl = {
     NvimTreeGitDeleted = { fg = M.base_30.red },
     NvimTreeGitStagedIcon = { fg = M.base_30.green },
     NvimTreeGitFolderDeletedHL = { fg = M.base_16.base05, link = "" },
+    NvimTreeGitFileRenamedHL = { fg = M.base_16.base0B },
 
     -- Diagnostics
     NvimTreeDiagnosticErrorFileHL = { undercurl = true, sp = M.base_16.base08, link = "" },
@@ -264,6 +270,7 @@ M.polish_hl = {
 
     ["@keyword.import"] = { fg = M.base_16.base09 },
     ["@keyword.import.go"] = { fg = M.base_16.base09 },
+    ["@keyword.import.rust"] = { fg = M.base_16.base09 },
     ["@keyword.import.python"] = { fg = M.base_16.base09 },
     ["@keyword.import.tsx"] = { fg = M.base_16.base09 },
     ["@keyword.import.typescript"] = { fg = M.base_16.base09 },
@@ -364,13 +371,14 @@ local function gen_stl_mode_hl(modename, col)
 end
 
 gen_stl_mode_hl("Normal", "nord_blue")
-gen_stl_mode_hl("Visual", "cyan")
+gen_stl_mode_hl("Visual", "orange")
 gen_stl_mode_hl("Insert", "dark_purple")
+gen_stl_mode_hl("Command", "green")
+
 gen_stl_mode_hl("Terminal", "green")
 gen_stl_mode_hl("NTerminal", "yellow")
 gen_stl_mode_hl("Replace", "orange")
 gen_stl_mode_hl("Confirm", "teal")
-gen_stl_mode_hl("Command", "green")
 gen_stl_mode_hl("Select", "blue")
 
 vim.g.terminal_color_0 = M.base_16.base01 -- Dark grey
