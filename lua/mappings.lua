@@ -55,7 +55,7 @@ map("v", "<BS>", '"_d', { noremap = true })
 
 map("i", "<C-p>", '<esc>"ppi', { noremap = true })
 
-map("n", "<C-d>", '"zY"zp', { desc = "Duplicate line" })
+map("n", "<C-d>", '"zY"zp', { desc = "Duplicate line", noremap = true })
 -- Cut & delete !>
 
 -- <! Scroll
