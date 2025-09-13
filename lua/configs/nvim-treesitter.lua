@@ -30,6 +30,7 @@ local ensure_installed = {
   "bash",
   "http",
   "rust",
+  "helm",
 }
 
 if brief_exists then

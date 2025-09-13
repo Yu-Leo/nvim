@@ -97,6 +97,14 @@ vim.filetype.add {
   },
 }
 
+vim.filetype.add {
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+}
+
 -- Spelling
 -- opt.spelllang = "ru_ru,en_us"
 -- opt.spell = false
