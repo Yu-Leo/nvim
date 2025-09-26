@@ -19,4 +19,8 @@ return {
   preview_config = {
     border = "single",
   },
+  watch_gitdir = {
+    enable = true,
+    follow_files = true,
+  },
 }
