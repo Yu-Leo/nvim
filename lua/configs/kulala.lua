@@ -25,21 +25,21 @@ return {
       ft = { "http", "rest" },
     },
     ["Select environment"] = {
-      "e",
+      "<leader>Re",
       function()
         require("kulala").set_selected_env()
       end,
       ft = { "http", "rest" },
     },
     ["Copy as cURL"] = {
-      "c",
+      "<leader>Rc",
       function()
         require("kulala").copy()
       end,
       ft = { "http", "rest" },
     },
     ["Paste from curl"] = {
-      "C",
+      "<leader>RC",
       function()
         require("kulala").from_curl()
       end,
