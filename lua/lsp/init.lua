@@ -73,6 +73,14 @@ vim.lsp.config("lua_ls", {
   },
 })
 
+vim.lsp.config("intelephense", {
+  cmd = { "intelephense", "--stdio" },
+  filetypes = { "php" },
+  root_markers = { ".git" },
+  on_init = utils.on_init,
+  on_attach = utils.on_attach,
+})
+
 local brief_exists, brief = pcall(require, "private.brief")
 if brief_exists then
   brief.setup_briefls(utils.on_attach, utils.on_init)
@@ -81,4 +89,5 @@ end
 vim.lsp.enable {
   "gopls",
   "lua_ls",
+  "intelephense",
 }
