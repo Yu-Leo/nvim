@@ -2,7 +2,7 @@
 
 ((comment) @type.builtin (#lua-match? @type.builtin "^//go:"))
 
-((comment) @string (#lua-match? @string "^// *[Tt][Oo][Dd][Oo]"))
+((comment) @type.builtin (#lua-match? @type.builtin "^// *[Tt][Oo][Dd][Oo]"))
 
 ([
   (interpreted_string_literal_content)

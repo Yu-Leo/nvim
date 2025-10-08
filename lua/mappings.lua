@@ -55,7 +55,7 @@ map("v", "<BS>", '"_d', { noremap = true })
 
 map("i", "<C-p>", '<esc>"ppi', { noremap = true })
 
-map("n", "<C-d>", '"zY"zp', { desc = "Duplicate line", noremap = true })
+map("n", "<A-d>", '"zY"zp', { desc = "Duplicate line", noremap = true })
 -- Cut & delete !>
 
 -- <! Scroll
@@ -455,6 +455,7 @@ map("n", "<leader>V", function()
 end, { desc = "Toggle autoformat on save", remap = true })
 
 map("n", "<leader>L", ":Lazy<CR>", { desc = "Open Lazy" })
+map("n", "<leader>M", ":Mason<CR>", { desc = "Open Mason" })
 -- Some !>
 
 -- <! GitLinker

@@ -276,6 +276,7 @@ M.polish_hl = {
     ["@keyword.import.typescript"] = { fg = M.base_16.base09 },
     ["@keyword.import.javascript"] = { fg = M.base_16.base09 },
     ["@keyword.import.make"] = { fg = M.base_16.base09 },
+    ["@keyword.import.php"] = { fg = M.base_16.base09 },
 
     ["@function"] = { fg = M.base_16.base0D },
     ["@function.builtin"] = { fg = M.base_16.base0D },

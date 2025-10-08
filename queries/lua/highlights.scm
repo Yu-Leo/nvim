@@ -1,3 +1,3 @@
 ; extends
 
-((comment) @string (#lua-match? @string "^-- *[Tt][Oo][Dd][Oo]"))
+((comment) @type.builtin (#lua-match? @type.builtin "^-- *[Tt][Oo][Dd][Oo]"))
