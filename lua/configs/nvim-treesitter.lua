@@ -17,6 +17,7 @@ local ensure_installed = {
   "markdown_inline",
   "git_config",
   "gitignore",
+  "gitattributes",
   "python",
   "javascript",
   "html",
@@ -40,6 +41,8 @@ local ensure_installed = {
   "nginx",
   "php",
   "blade",
+  "editorconfig",
+  "xml",
 }
 
 if brief_exists then

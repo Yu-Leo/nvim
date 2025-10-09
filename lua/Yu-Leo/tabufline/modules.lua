@@ -59,11 +59,19 @@ M.treeOffset = function()
     return ""
   end
 
-  local cwd = "   " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t:s?$?") .. "/..."
-  local pad = math.max(w - #cwd, 0)
-  local padding = string.rep(" ", pad)
+  local prefix = "   "
+  local available_width = w - #prefix
+  local path = vim.fn.fnamemodify(vim.fn.getcwd(), ":t:s?$?") .. "/"
 
-  return "%#NvimTreeRootFolder#" .. cwd .. padding .. "%#NvimTreeWinSeparator#" .. "│"
+  if #path > available_width then
+    local ellipsis = "..."
+    local cut_width = available_width - #ellipsis
+    path = ellipsis .. string.sub(path, #path - cut_width + 1)
+  else
+    path = path .. string.rep(" ", available_width - #path)
+  end
+
+  return "%#NvimTreeRootFolder#" .. prefix .. path .. "%#NvimTreeWinSeparator#" .. "│"
 end
 
 M.buffers = function()
