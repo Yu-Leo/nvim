@@ -362,7 +362,7 @@ end, { desc = "Toggle relative number" })
 
 map("n", "<leader><leader>w", "<cmd>set wrap!<cr>", { desc = "Toggle line wraps", remap = true })
 
-map("n", "<leader><leader>s", "<cmd>TSContextToggle<cr>", { desc = "Toggle TS context", remap = true })
+map("n", "<leader><leader>s", "<cmd>TSContext toggle<cr>", { desc = "Toggle TS context", remap = true })
 
 map("n", "<leader><leader>v", "<cmd>TSPlaygroundToggle<CR>", { desc = "Toggle TS Playground", remap = true })
 

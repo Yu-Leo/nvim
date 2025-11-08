@@ -43,6 +43,7 @@ local ensure_installed = {
   "blade",
   "editorconfig",
   "xml",
+  "pem",
 }
 
 if brief_exists then
