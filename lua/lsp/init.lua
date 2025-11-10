@@ -81,6 +81,21 @@ vim.lsp.config("intelephense", {
   on_attach = utils.on_attach,
 })
 
+vim.lsp.config("typescript-language-server", {
+  cmd = { "typescript-language-server", "--stdio" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
+  root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+  on_init = utils.on_init,
+  on_attach = utils.on_attach,
+})
+
 local brief_exists, brief = pcall(require, "private.brief")
 if brief_exists then
   brief.setup_briefls(utils.on_attach, utils.on_init)
@@ -90,4 +105,5 @@ vim.lsp.enable {
   "gopls",
   "lua_ls",
   "intelephense",
+  "typescript-language-server",
 }
