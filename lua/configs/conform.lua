@@ -4,6 +4,7 @@ local options = {
     -- go = { "goimports", "golines", "gofumpt", lsp_format = "never" },
     go = { "goimports", "gofmt", lsp_format = "never" },
     json = { "jq" },
+    yaml = { "prettier" },
     php = { lsp_format = "prefer" },
   },
   default_format_opts = {

@@ -89,11 +89,11 @@ map("n", "<leader>c", function()
   require("Yu-Leo.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
-map("n", "<leader>b", function()
+map("n", "<leader>B", function()
   require("Yu-Leo.tabufline").close_all_bufs()
 end, { desc = "Buffer close all" })
 
-map("n", "<leader>C", function()
+map("n", "<leader>b", function()
   require("Yu-Leo.buffers").close_all_hidden()
 end, { desc = "Buffer close all hidden" })
 
