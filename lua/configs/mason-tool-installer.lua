@@ -12,5 +12,6 @@ return {
     "golines",
     "stylua",
     "prettier",
+    "taplo",
   },
 }

@@ -6,6 +6,7 @@ local options = {
     json = { "jq" },
     yaml = { "prettier" },
     php = { lsp_format = "prefer" },
+    toml = { "taplo" },
   },
   default_format_opts = {
     lsp_format = "prefer", -- format using only lsp by default
