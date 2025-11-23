@@ -1,6 +1,7 @@
 local M = {
   base46 = {
     theme = "savannah",
+    -- theme = "github_light",
     hl_add = {},
     hl_override = {},
     integrations = {},

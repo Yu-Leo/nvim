@@ -90,12 +90,16 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    branch = "master", -- TODO: main
     build = ":TSUpdate",
     config = function()
       require "configs.nvim-treesitter"
     end,
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "master", -- TODO: main
+      },
       "nvim-treesitter/nvim-treesitter-context",
     },
   },
@@ -154,7 +158,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       {
         "fredrikaverpil/neotest-golang",
-        version = "*",
+        version = "1.15.1", -- TODO: v2, after nvim-treesitter main branch
       },
     },
     config = function()
