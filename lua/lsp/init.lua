@@ -96,6 +96,16 @@ vim.lsp.config("typescript-language-server", {
   on_attach = utils.on_attach,
 })
 
+vim.lsp.config("vue-language-server", {
+  cmd = { "vue-language-server", "--stdio" },
+  filetypes = {
+    "vue",
+  },
+  root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+  on_init = utils.on_init,
+  on_attach = utils.on_attach,
+})
+
 local brief_exists, brief = pcall(require, "private.brief")
 if brief_exists then
   brief.setup_briefls(utils.on_attach, utils.on_init)
@@ -106,4 +116,5 @@ vim.lsp.enable {
   "lua_ls",
   "intelephense",
   "typescript-language-server",
+  "vue-language-server",
 }
