@@ -183,7 +183,7 @@ end, { desc = "Jump to empty lines" })
 -- Flash !>
 
 -- <! Telescope
-map("n", "<leader>F", function()
+map("n", "<leader>fj", function()
   require("telescope").extensions["recent-files"].recent_files {}
 end, { desc = "Telescope find files" })
 
@@ -201,10 +201,6 @@ end, { desc = "Telescope find words" })
 map("n", "<leader>fo", function()
   require("telescope.builtin").buffers()
 end, { desc = "Telescope find buffers" })
-
-map("n", "<leader>fj", function()
-  require("snipe").open_buffer_menu()
-end, { desc = "Find open buffers" })
 
 map("n", "<leader>fh", function()
   require("telescope.builtin").grep_string {

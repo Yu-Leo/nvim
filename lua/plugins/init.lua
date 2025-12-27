@@ -232,11 +232,6 @@ return {
     opts = {},
   },
   {
-    "leath-dub/snipe.nvim",
-    event = "VeryLazy",
-    opts = require "configs.snipe",
-  },
-  {
     "kana/vim-textobj-line",
     dependencies = { "kana/vim-textobj-user" },
     event = "VeryLazy",
@@ -250,10 +245,5 @@ return {
     "linrongbin16/gitlinker.nvim",
     event = "VeryLazy",
     opts = require "configs.gitlinker",
-  },
-  {
-    "mistweaverco/kulala.nvim",
-    ft = { "http", "rest" },
-    opts = require "configs.kulala",
   },
 }
