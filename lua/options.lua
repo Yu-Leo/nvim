@@ -88,6 +88,7 @@ vim.filetype.add {
     brief = "brief",
     curl = "curl",
     http = "http",
+    j2 = "jinja",
   },
 }
 
