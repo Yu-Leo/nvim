@@ -114,7 +114,7 @@ end
 vim.lsp.enable {
   "gopls",
   "lua_ls",
-  "intelephense",
-  "typescript-language-server",
+  -- "intelephense",
+  -- "typescript-language-server",
   "vue-language-server",
 }

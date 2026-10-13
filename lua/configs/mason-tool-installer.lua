@@ -3,8 +3,8 @@ return {
     -- LSP
     "lua-language-server",
     "gopls",
-    "html-lsp",
-    "typescript-language-server",
+    -- "html-lsp",
+    -- "typescript-language-server",
 
     -- Formatters
     "gofumpt",
