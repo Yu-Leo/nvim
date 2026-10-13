@@ -167,9 +167,17 @@ return {
   },
   {
     "sindrets/diffview.nvim",
+    enabled = false,
     cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
     config = function()
       require "configs.diffview"
+    end,
+  },
+  {
+    "Tarmean/diffview-plus.nvim",
+    cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
+    config = function()
+      require "configs.diffview-plus"
     end,
   },
   {
