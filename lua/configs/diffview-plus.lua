@@ -33,6 +33,12 @@ require("diffview").setup {
       disable_diagnostics = false,
       winbar_info = false,
     },
+    cycle_layouts = {
+      default = { "diff2_horizontal", "diff1_inline" },
+    },
+    inline = {
+      style = "unified",
+    },
   },
   file_panel = {
     listing_style = "tree",
@@ -87,6 +93,7 @@ require("diffview").setup {
         { desc = "Open the file in the previous tabpage" },
       },
       { "n", "<leader>e", actions.toggle_files, { desc = "Toggle the file panel." } },
+      { "n", "<leader>r", actions.cycle_layout, { desc = "Toggle between inline and side-by-side diff" } },
       {
         "n",
         "[x",
@@ -157,6 +164,11 @@ require("diffview").setup {
     },
     diff1 = {
       { "n", "g?", actions.help { "view", "diff1" }, { desc = "Open the help panel" } },
+    },
+    diff1_inline = {
+      { "n", "]h", actions.next_inline_hunk, { desc = "Jump to the next inline-diff hunk" } },
+      { "n", "[h", actions.prev_inline_hunk, { desc = "Jump to the previous inline-diff hunk" } },
+      { "n", "g?", actions.help { "view", "diff1", "diff1_inline" }, { desc = "Open the help panel" } },
     },
     diff2 = {
       { "n", "g?", actions.help { "view", "diff2" }, { desc = "Open the help panel" } },
@@ -275,6 +287,7 @@ require("diffview").setup {
         { desc = "Update stats and entries in the file list" },
       },
       { "n", "<leader>e", actions.toggle_files, { desc = "Toggle the file panel" } },
+      { "n", "<leader>r", actions.cycle_layout, { desc = "Toggle between inline and side-by-side diff" } },
       {
         "n",
         "go",
@@ -323,6 +336,7 @@ require("diffview").setup {
       { "n", "<tab>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
       { "n", "<s-tab>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
       { "n", "<leader>e", actions.toggle_files, { desc = "Toggle the file panel" } },
+      { "n", "<leader>r", actions.cycle_layout, { desc = "Toggle between inline and side-by-side diff" } },
       { "n", "g?", actions.help "file_history_panel", { desc = "Open the help panel" } },
     },
     option_panel = {},
